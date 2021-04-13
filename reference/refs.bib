@@ -70,6 +70,23 @@
   number = {12}
 }
 
+@article{CrossComponentPredictionCCLM,
+  title = {Enhanced Cross-Component Linear Model for Chroma Intra-Prediction in Video Coding},
+  author = {Zhang, Kai and Chen, Jianle and Zhang, Li and Li, Xiang and Karczewicz, Marta},
+  year = {2018},
+  month = aug,
+  volume = {27},
+  pages = {3983--3997},
+  issn = {1941-0042},
+  doi = {10.1109/TIP.2018.2830640},
+  abstract = {Cross-component linear model (CCLM) for chroma intra-prediction is a promising coding tool in the joint exploration model (JEM) developed by the Joint Video Exploration Team (JVET). CCLM assumes a linear correlation between the luma and chroma components in a coding block. With this assumption, the chroma components can be predicted by the linear model (LM) mode, which utilizes the reconstructed neighboring samples to derive parameters of a linear model by linear regression. This paper presents three new methods to further improve the coding efficiency of CCLM. First, we introduce a multi-model CCLM (MM-CCLM) approach, which applies more than one linear model to a coding block. With MM-CCLM, reconstructed neighboring luma and chroma samples of the current block are classified into several groups, and a particular set of linear model parameters is derived for each group. The reconstructed luma samples of the current block are also classified to predict the associated chroma samples with the corresponding linear model. Second, we propose a multi-filter CCLM (MF-CCLM) technique, which allows the encoder to select the optimal down-sampling filter for the luma component with the 4:2:0 color format. Third, we present an LM-angular prediction method, which synthesizes the angular intra-prediction and the MM-CCLM intra-prediction into a new chroma intra-coding mode. Simulation results show that the BD-rate savings of 0.55\%, 4.66\%, and 5.08\% on average for Y, Cb, and Cr components, respectively, are achieved in all intra-configurations with the proposed three methods. MM-CCLM and MF-CCLM have been adopted into the JEM by JVET.},
+  annotation = {亮度预测色差 3个线性拟合模型},
+  file = {E\:\\Documents\\Zotero\\storage\\PLI72HHI\\2018 - Enhanced Cross-Component Linear Model for Chroma Intra-Prediction in Video Coding - Zhang 等。.pdf;E\:\\Documents\\Zotero\\storage\\NALNIH5K\\8350031.html},
+  journal = {IEEE Transactions on Image Processing},
+  keywords = {angular intraprediction,associated chroma samples,BD-rate savings,chroma components,chroma intra-prediction,chroma intracoding mode,chroma intraprediction,coding block,coding efficiency,coding tool,Correlation,Cr components,Cross-component linear model,current block,enhanced cross-component linear model,High efficiency video coding,image classification,Image coding,image colour analysis,image filtering,image reconstruction,Image reconstruction,intraconfigurations,JEM,joint exploration model,Joint Video Exploration Team,JVET,linear correlation,linear model mode,linear model parameters,linear regression,Linear regression,LM,LM-angular prediction method,luma component,MF-CCLM intraprediction,MM-CCLM,multi-filter,multi-model,multifilter CCLM,multimodel CCLM,optimal down-sampling filter,Predictive models,reconstructed luma samples,reconstructed neighboring samples,regression analysis,video coding,Video coding},
+  number = {8}
+}
+
 @article{DCTCoefficientMathAnalysis,
   title = {A Mathematical Analysis of the {{DCT}} Coefficient Distributions for Images},
   author = {Lam, E. Y. and Goodman, J. W.},
@@ -101,10 +118,82 @@
   keywords = {Biological cells,data compression,Fractal image,fractional numbers,genetic algorithm optimization,genetic algorithms,Genetic algorithms,image coding,Image coding,image colour analysis,image compression quality enhancement,image compression ratio enhancement,image representation,Internet era,least significant bits,lossy compression,number theory,quotient representation,rational numbers,RGB representation,Sociology,Statistics,telecommunication,Wavelet transforms}
 }
 
+@article{H264Overview,
+  title = {The h.264/{{MPEG4}} Advanced Video Coding Standard and Its Applications},
+  author = {Marpe, D. and Wiegand, T. and Sullivan, G. J.},
+  year = {2006},
+  month = aug,
+  volume = {44},
+  pages = {134--143},
+  issn = {1558-1896},
+  doi = {10.1109/MCOM.2006.1678121},
+  abstract = {H.264/MPEG4-AVC is the latest video coding standard of the ITU-T video coding experts group (VCEG) and the ISO/IEC moving picture experts group (MPEG). H.264/MPEG4-AVC has recently become the most widely accepted video coding standard since the deployment of MPEG2 at the dawn of digital television, and it may soon overtake MPEG2 in common use. It covers all common video applications ranging from mobile services and videoconferencing to IPTV, HDTV, and HD video storage. This article discusses the technology behind the new H.264/MPEG4-AVC standard, focusing on the main distinct features of its core coding technology and its first set of extensions, known as the fidelity range extensions (FRExt). In addition, this article also discusses the current status of adoption and deployment of the new standard in various application areas},
+  annotation = {H.264综述和标准},
+  journal = {IEEE Communications Magazine},
+  keywords = {core coding technology,Digital TV,fidelity range extensions,H.264-MPEG4 advanced video coding standard,HD video storage,HDTV,High definition video,IEC standards,IPTV,ISO standards,ISO-IEC moving picture experts group,ITU-T video coding experts group,mobile services,MPEG 4 Standard,MPEG standards,telecommunication services,Teleconferencing,video coding,Video coding,videoconferencing},
+  number = {8}
+}
+
+@article{H264TwoLayerLosslessCoding,
+  title = {Improved h.264/{{AVC}} Lossless Intra Coding with Two-Layered Residual Coding ({{TRC}})},
+  author = {{Seung-Hwan Kim} and {Je-Won Kang} and Kuo, C.-C Jay},
+  year = {2011},
+  month = jul,
+  volume = {21},
+  pages = {1005--1010},
+  issn = {1051-8215, 1558-2205},
+  doi = {10.1109/TCSVT.2011.2133170},
+  abstract = {A lossless image coding method, known as the two-layered residual coding (TRC) scheme, is proposed in this letter. After the H.264/AVC lossy intra prediction, we propose an advanced scheme for residual coding, which consists of two residual coders in cascade. The first-layer residual coder is conducted via transform and quantization with a coarser quantization parameter. The second-layer residual coder is a bitplane coding method. It is shown experimentally that the TRC scheme outperforms the H.264/AVC lossless intra coding with an averaged bit rate saving of about 24\%.},
+  annotation = {两层残差编码，在有损的基础上套一层修正值的编码，实现无损（H.264）},
+  file = {E\:\\Documents\\Zotero\\storage\\2CPXH2RJ\\2011 - Improved H.264AVC Lossless Intra Coding With Two-Layered Residual Coding (TRC) - Seung-Hwan Kim 等。.pdf},
+  journal = {IEEE Transactions on Circuits and Systems for Video Technology},
+  language = {en},
+  number = {7}
+}
+
+@inproceedings{HEVCCommonTestConditionsCTC,
+  title = {Common Test Conditions and Software Reference Configurations},
+  booktitle = {{{JCTVC}}-{{L1100}}},
+  author = {Bossen, Frank and others},
+  year = {2013},
+  volume = {12},
+  annotation = {HEVC通用测试配置}
+}
+
+@inproceedings{HEVCExSCCTestConditions,
+  title = {Common Test Conditions and Software Reference Configurations for {{HEVC}} Range Extensions},
+  booktitle = {{{JCT}}-{{VC P1006}}, 16th {{Meeting}} of {{JCT}}-{{VC}}},
+  author = {Rosewarne, C and Sharman, K and Flynn, D},
+  year = {2014},
+  pages = {1--10},
+  annotation = {HEVC扩展标准测试配置}
+}
+
+@misc{HEVCsoftwareHM16,
+  title = {{{HEVC}} Reference Software {{HM}}-16},
+  author = {Bossen, F},
+  annotation = {HEVC参考软件HM16}
+}
+
 @misc{JPEGStandardITU,
   title = {T.81~:~Information Technology - Digital Compression and Coding of Continuous-Tone Still Images - Requirements and Guidelines},
   annotation = {JPEG ITU 标准},
   howpublished = {https://www.itu.int/rec/T-REC-T.81-199209-I/en}
+}
+
+@inproceedings{LatestLosslessIntraCodingAsRef,
+  title = {A Fast Lossless Implementation of the Intra Subpartition Mode for {{VVC}}},
+  booktitle = {2020 {{IEEE International Conference}} on {{Image Processing}} ({{ICIP}})},
+  author = {{De-Lux{\'a}n-Hern{\'a}ndez}, S. and Venugopal, G. and George, V. and Schwarz, H. and Marpe, D. and Wiegand, T.},
+  year = {2020},
+  month = oct,
+  pages = {1118--1122},
+  issn = {2381-8549},
+  doi = {10.1109/ICIP40778.2020.9191103},
+  abstract = {Lossy compression is the main target of the upcoming video coding standard Versatile Video Coding (VVC). However, lossless coding is supported in VVC by utilizing a certain encoder configuration. Particularly, the Transform Skip Mode (TSM) is always selected at the block level to bypass the transform stage (together with a QP that results in the same output as input at the quantization stage). Consequently, the Intra Subpartition (ISP) coding mode cannot be used for lossless coding, considering that its combination with TSM is not supported in VVC because it does not provide a significant coding benefit for the lossy common test conditions. For this reason, it is proposed to enable such a combination for the benefit of lossless coding. Besides, the encoder search has been optimized to improve the trade-off between compression benefit and encoder run-time. Experimental results show a 0.71\% coding gain with a corresponding encoder run-time of 111\%.},
+  annotation = {最新的无损应用，做参考文献},
+  file = {E\:\\Documents\\Zotero\\storage\\56LRRNEL\\2020 - A Fast Lossless Implementation Of The Intra Subpartition Mode For VVC - De-Luxán-Hernández 等。.pdf},
+  keywords = {coding gain,Copper,data compression,Decoding,Encoding,Estimation,fast encoder search,fast lossless implementation,intra prediction,Intra Subpartition coding mode,Intra Subpartition Mode,intra subpartitions,ISP,lossless coding,lossy common test conditions,lossy compression,rate distortion theory,significant coding benefit,standard Versatile Video Coding,Tools,Transform Skip Mode,transform stage,Transforms,TSM,upcoming video,video coding,Video coding,VVC}
 }
 
 @phdthesis{LineCodeDocPaper,
@@ -137,6 +226,24 @@
   number = {1}
 }
 
+@article{LOCOi,
+  title = {The {{LOCO}}-i Lossless Image Compression Algorithm: Principles and Standardization into {{JPEG}}-{{LS}}},
+  shorttitle = {The {{LOCO}}-i Lossless Image Compression Algorithm},
+  author = {Weinberger, M. J. and Seroussi, G. and Sapiro, G.},
+  year = {2000},
+  month = aug,
+  volume = {9},
+  pages = {1309--1324},
+  issn = {1941-0042},
+  doi = {10.1109/83.855427},
+  abstract = {LOCO-I (LOw COmplexity LOssless COmpression for Images) is the algorithm at the core of the new ISO/ITU standard for lossless and near-lossless compression of continuous-tone images, JPEG-LS. It is conceived as a "low complexity projection" of the universal context modeling paradigm, matching its modeling unit to a simple coding unit. By combining simplicity with the compression potential of context models, the algorithm "enjoys the best of both worlds." It is based on a simple fixed context model, which approaches the capability of the more complex universal techniques for capturing high-order dependencies. The model is tuned for efficient performance in conjunction with an extended family of Golomb (1966) type codes, which are adaptively chosen, and an embedded alphabet extension for coding of low-entropy image regions. LOCO-I attains compression ratios similar or superior to those obtained with state-of-the-art schemes based on arithmetic coding. Moreover, it is within a few percentage points of the best available compression ratios, at a much lower complexity level. We discuss the principles underlying the design of LOCO-I, and its standardization into JPEC-LS.},
+  annotation = {新Planar来源LOCO-i},
+  file = {E\:\\Documents\\Zotero\\storage\\Y9L3FUA9\\2000 - The LOCO-I lossless image compression algorithm principles and standardization into JPEG-LS - Weinberger 等。.pdf},
+  journal = {IEEE Transactions on Image Processing},
+  keywords = {Arithmetic,arithmetic codes,arithmetic coding,code standards,coding unit,compression ratios,computational complexity,Context modeling,continuous-tone images,data compression,Data compression,Decoding,efficient performance,embedded alphabet extension,entropy,fixed context model,Golomb-type codes,high-order dependencies,image coding,Image coding,Inference algorithms,ISO standards,ISO/ITU standard,JPEG-LS,Laboratories,LOGO-I lossless image compression algorithm,lossless compression,low complexity lossless compression for images,low complexity projection,low-entropy image regions,modeling unit,near-lossless compression,Solid modeling,standardisation,standardization,Standardization,universal context modeling paradigm},
+  number = {8}
+}
+
 @article{pwmResidualsPiecewiseMapping,
   title = {Piecewise Mapping in {{HEVC}} Lossless Intra-Prediction Coding},
   author = {Sanchez, Victor and {Aul{\'i}-Llin{\`a}s}, Francesc and {Serra-Sagrist{\`a}}, Joan},
@@ -154,6 +261,21 @@
   number = {9}
 }
 
+@inproceedings{SAP-SAP1,
+  title = {Improvements to {{HEVC}} Intra Coding for Lossless Medical Image Compression},
+  booktitle = {2014 {{Data Compression Conference}}},
+  author = {Sanchez, V. and Llin{\`a}s, F. A. and Rapesta, J. B. and Sagrist{\`a}, J. S.},
+  year = {2014},
+  month = mar,
+  pages = {423--423},
+  issn = {2375-0359},
+  doi = {10.1109/DCC.2014.76},
+  abstract = {This works focuses on the High Efficiency Video Coding (HEVC) standard as a compression method to be potentially adopted by the Digital Imaging and Communications in Medicine (DICOM) standard. We are particularly interested in improving the lossless compression efficiency of the intra coding process for grayscale anatomical medical images. We focus on intra coding due to its low complexity and outstanding compression results, as well as the fact that it allows coding high-dimensional medical images on a slice-by-slice basis. This is especially advantageous for cases when only a small set of slices needs to be accessed without the need to decode the entire data set. Based on the characteristics of grayscale anatomical medical images, specifically their large amount of edge information and frequent number of patterns depicted on various directions, we propose improvements to HEVC intra coding based on sample-by-sample (SbS) differential pulse code modulation (DPCM) with equal displacements so the density of prediction modes is constant in all directions. Performance evaluations over MRI, CT and X-ray angiography sequences show that the proposed improvements outperform current HEVC lossless intra coding, achieving average coding gains of 6\%.},
+  annotation = {SAP系列SAP-SAP1},
+  file = {E\:\\Documents\\Zotero\\storage\\IU2E9ZJN\\2014 - Improvements to HEVC intra coding for lossless medical image compression - Sanchez 等。.pdf},
+  keywords = {data compression,Data compression,DICOM,DICOM standard,Digital Imaging and Communications in Medicine standard,DPCM,Encoding,Gray-scale,grayscale anatomical medical images,HEVC intracoding,high efficiency video coding standard,high-dimensional medical image coding,Image coding,lossless compression efficiency,lossless medical image compression,medical image processing,sample-by-sample differential pulse code modulation,SbS,Standards,video coding}
+}
+
 @article{StillImageIntraCompressRatioAllTest,
   title = {{{OVERVIEW AND BENCHMARKING SUMMARY FOR THE ICIP}} 2016 {{COMPRESSION CHALLENGE}}},
   author = {Alexiou, Evangelos and Viola, Irene and Krasula, Lukas and Richter, Thomas and Bruylants, Tim and Pinheiro, Antonio and Fliegel, Karel and Rerabek, Martin and Skodras, Athanassios and Schelkens, Peter and Ebrahimi, Touradj},
@@ -164,13 +286,19 @@
   language = {en}
 }
 
-@misc{VVCComplexityAnalysisEncodeTime30xDecodeTime3x,
-  title = {Complexity Analysis of Next-Generation {{VVC}} Encoding and Decoding},
+@inproceedings{VVCComplexityAnalysisEncodeTime30xDecodeTime3x,
+  title = {Complexity {{Analysis Of Next}}-{{Generation VVC Encoding And Decoding}}},
+  booktitle = {2020 {{IEEE International Conference}} on {{Image Processing}} ({{ICIP}})},
+  author = {Pakdaman, F. and Adelimanesh, M. A. and Gabbouj, M. and Hashemi, M. R.},
+  year = {2020},
+  month = oct,
+  pages = {3134--3138},
+  issn = {2381-8549},
+  doi = {10.1109/ICIP40778.2020.9190983},
   abstract = {While the next generation video compression standard, Versatile Video Coding (VVC), provides a superior compression efficiency, its computational complexity dramatically increases. This paper thoroughly analyzes this complexity for both encoder and decoder of VVC Test Model 6, by quantifying the complexity break-down for each coding tool and measuring the complexity and memory requirements for VVC encoding/decoding. These extensive analyses are performed for six video sequences of 720p, 1080p, and 2160p, under Low-Delay (LD), Random-Access (RA), and All-Intra (AI) conditions (a total of 320 encoding/decoding). Results indicate that the VVC encoder and decoder are 5\texttimes{} and 1.5\texttimes{} more complex compared to HEVC in LD, and 31\texttimes{} and 1.8\texttimes{} in AI, respectively. Detailed analysis of coding tools reveals that in LD on average, motion estimation tools with 53\%, transformation and quantization with 22\%, and entropy coding with 7\% dominate the encoding complexity. In decoding, loop filters with 30\%, motion compensation with 20\%, and entropy decoding with 16\%, are the most complex modules. Moreover, the required memory bandwidth for VVC encoding/decoding are measured through memory profiling, which are 30\texttimes{} and 3\texttimes{} of HEVC. The reported results and insights are a guide for future research and implementations of energy-efficient VVC encoder/decoder.},
   annotation = {VVC 复杂度分析 编码 30x 解码 3x},
-  file = {E\:\\Documents\\Zotero\\storage\\QFLIL2YL\\Complexity Analysis Of Next-Generation VVC Encoding And Decoding - .pdf},
-  howpublished = {https://ieeexplore.ieee.org/document/9190983},
-  language = {en-US}
+  file = {E\:\\Documents\\Zotero\\storage\\ZSKQCQF5\\2020 - Complexity Analysis Of Next-Generation VVC Encoding And Decoding - Pakdaman 等。.pdf},
+  keywords = {complexity analysis,Conferences,Data compression,IEC Standards,Image processing,Indexes,ISO Standards,Tools,Versatile Video Coding (VVC),video coding,video decoding,VVC Test Model (VTM)}
 }
 
 @inproceedings{VVCCompressRatio40PercentTime15x,
@@ -205,6 +333,33 @@
   keywords = {Electrical Engineering and Systems Science - Image and Video Processing},
   language = {en},
   primaryclass = {eess}
+}
+
+@inproceedings{VVCTestConditions,
+  title = {{{JVET}} Common Test Conditions and Software Reference Configurations},
+  shorttitle = {{{JVET}}-{{J1010}}},
+  author = {Boyce, Jill and Suehring, Karsten and Li, Xiang and Seregin, Vadim},
+  year = {2018},
+  month = jul,
+  abstract = {This document defines common test conditions and software reference configurations to be used in the context of core experiments (CE) conducted after the 10 th JVET meeting. These common test conditions are also recommended for use in technical contributions to the 11 th and following JVET meetings, if applicable.},
+  annotation = {VVC测试配置},
+  file = {E\:\\Documents\\Zotero\\storage\\J42CZN8R\\2018 - JVET-J1010 JVET common test conditions and software reference configurations - Boyce 等。.pdf}
+}
+
+@article{XiDianIntraPredictionH264,
+  title = {一种降低预测模式开销的帧内预测方法},
+  author = {{元辉;常义林;卢朝阳;李明}},
+  year = {2010},
+  volume = {37},
+  pages = {981},
+  publisher = {{西安电子科技大学学报}},
+  doi = {10.3969/j.issn.1001-2400.2010.06.001},
+  abstract = {提出一种新颖的帧内预测方法．比较每种预测模式的预测块与直流(DC)预测模式的预测块之间的绝对差和．进而判断当前块在各种预测模式下的预测块是否相似．若当前块的各种预测块都相似，则将所有预测块的均值作为当前块的最终预测结果，且不必编码预测模式．实验结果表明，提出的方法较H.264/AVC能够获得更高的编码性能，在恢复视频客观质量PSNR相同时，码率平均下降2.40％，编码时间平均减少25.83％．},
+  annotation = {西电，不需要编码模式信息的帧内预测方式},
+  eid = {981},
+  journal = {西安电子科技大学学报},
+  keywords = {¡p¿帧内预测,H.264/AVC,模式信息,视频编码¡/p¿},
+  number = {6}
 }
 
 

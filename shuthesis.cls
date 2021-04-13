@@ -141,8 +141,8 @@
   ignoreall,
   nomarginpar}
 \geometry{
-  left=28mm,
-  right=28mm,
+  left=32mm,
+  right=32mm,
   headheight=8mm,
   headsep=7mm,
   top=30mm,
