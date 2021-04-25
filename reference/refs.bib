@@ -16,6 +16,12 @@
   number = {4}
 }
 
+@misc{AVCsoftwareJM,
+  title = {{{AVC}} Reference Software {{JM}}-19},
+  abstract = {H.264/AVC JM reference software},
+  annotation = {AVC参考软件JM}
+}
+
 @misc{BeginLatexGithubQuickStart,
   title = {Luong-Komorebi/{{Begin}}-Latex-in-Minutes},
   author = {Vo, Luong},
@@ -49,7 +55,6 @@
   annotation = {HEVC英文书},
   file = {E\:\\Documents\\Zotero\\storage\\9W4GANJZ\\2014 - High Efficiency Video Coding (HEVC) Algorithms and Architectures - Sze 等。.pdf},
   isbn = {978-3-319-06894-7 978-3-319-06895-4},
-  language = {en},
   series = {Integrated {{Circuits}} and {{Systems}}}
 }
 
@@ -104,6 +109,22 @@
   number = {10}
 }
 
+@inproceedings{FuDanIntraArchitecture,
+  title = {A Highly Pipelined {{VLSI}} Architecture for All Modes and Block Sizes Intra Prediction in {{HEVC}} Encoder},
+  booktitle = {2013 {{IEEE}} 10th {{International Conference}} on {{ASIC}}},
+  author = {{Cong Liu} and {Weiwei Shen} and {Tianlong Ma} and {Yibo Fan} and {Xiaoyang Zeng}},
+  year = {2013},
+  month = oct,
+  pages = {1--4},
+  publisher = {{IEEE}},
+  address = {{Shenzhen, China}},
+  doi = {10.1109/ASICON.2013.6811849},
+  abstract = {The adoption of 35 prediction modes and quad-tree structure in intra coding of HEVC standard significantly improves the coding efficiency. In this paper, a highly pipelined 16-pixel parallel VLSI architecture of intra prediction in HEVC encoder is proposed, supporting all prediction modes and all block sizes. Original pixels are used to help to decide prediction mode 25 and block partition in the premise of negligible PSNR degradation, and a universal predictor is presented. In order to reduce internal buffers when scanning full-mode and full-size predictions in encoder, post-order traversal is applied to the quad-tree structure blocks. It takes 8967 cycles to complete the intra prediction of a whole 32x32 treeblock, including prediction and the decision of mode and block partition. This design is synthesized with TSMC 65nm CMOS technology. It can 30 run at 600 MHz, supporting real-time encoding of 1080P@30fps video sequence.},
+  annotation = {复旦ip帧内预测架构，使用原始像素做预测确定模式，参考像素重建完后用选好的模式做预测；从底层开始搜索。},
+  file = {E\:\\Documents\\Zotero\\storage\\UH464SCD\\2013 - A highly pipelined VLSI architecture for all modes and block sizes intra prediction in HEVC encoder - Cong Liu 等。.pdf},
+  isbn = {978-1-4673-6417-1 978-1-4673-6415-7 978-1-4673-6416-4}
+}
+
 @inproceedings{GeneticAlgorithmPixelCompressYiChuanSuanFa,
   title = {Image Compression Based on Genetic Algorithm Optimization},
   booktitle = {2015 2nd {{World Symposium}} on {{Web Applications}} and {{Networking}} ({{WSWAN}})},
@@ -147,8 +168,38 @@
   annotation = {两层残差编码，在有损的基础上套一层修正值的编码，实现无损（H.264）},
   file = {E\:\\Documents\\Zotero\\storage\\2CPXH2RJ\\2011 - Improved H.264AVC Lossless Intra Coding With Two-Layered Residual Coding (TRC) - Seung-Hwan Kim 等。.pdf},
   journal = {IEEE Transactions on Circuits and Systems for Video Technology},
-  language = {en},
   number = {7}
+}
+
+@article{H265Overview,
+  title = {Overview of the High Efficiency Video Coding ({{HEVC}}) Standard},
+  author = {Sullivan, Gary J. and Ohm, Jens-Rainer and Han, Woo-Jin and Wiegand, Thomas},
+  year = {2012},
+  month = dec,
+  volume = {22},
+  pages = {1649--1668},
+  issn = {1051-8215, 1558-2205},
+  doi = {10.1109/TCSVT.2012.2221191},
+  abstract = {High Efficiency Video Coding (HEVC) is currently being prepared as the newest video coding standard of the ITU-T Video Coding Experts Group and the ISO/IEC Moving Picture Experts Group. The main goal of the HEVC standardization effort is to enable significantly improved compression performance relative to existing standards\textemdash in the range of 50\% bit-rate reduction for equal perceptual video quality. This paper provides an overview of the technical features and characteristics of the HEVC standard.},
+  annotation = {H265Overview},
+  file = {E\:\\Documents\\Zotero\\storage\\LDIABWYE\\2012 - Overview of the High Efficiency Video Coding (HEVC) Standard - Sullivan 等。.pdf},
+  journal = {IEEE Transactions on Circuits and Systems for Video Technology},
+  number = {12}
+}
+
+@inproceedings{H266Overview,
+  title = {Versatile {{Video Coding}} \textendash{} {{Algorithms}} and {{Specification}}},
+  booktitle = {2020 {{IEEE International Conference}} on {{Visual Communications}} and {{Image Processing}} ({{VCIP}})},
+  author = {Wien, M. and Bross, B.},
+  year = {2020},
+  month = dec,
+  pages = {1--3},
+  issn = {2642-9357},
+  doi = {10.1109/VCIP49819.2020.9301820},
+  abstract = {The tutorial provides an overview on the latest emerging video coding standard VVC (Versatile Video Coding) to be jointly published by ITU-T and ISO/IEC. It has been developed by the Joint Video Experts Team (JVET), consisting of ITU-T Study Group 16 Question 6 (known as VCEG) and ISO/IEC JTC 1/SC 29/WG 11 (known as MPEG). VVC has been designed to achieve significantly improved compression capability compared to previous standards such as HEVC, and at the same time to be highly versatile for effective use in a broadened range of applications. Some key application areas for the use of VVC particularly include ultra-high-definition video (e.g. 4K or 8K resolution), video with a high dynamic range and wide colour gamut (e.g., with transfer characteristics specified in Rec. ITU-R BT.2100), and video for immersive media applications such as 360\textdegree{} omnidirectional video, in addition to the applications that have commonly been addressed by prior video coding standards. Important design criteria for VVC have been low computational complexity on the decoder side and friendliness for parallelization on various algorithmic levels. VVC is planned to be finalized by July 2020 and is expected to enter the market very soon.The tutorial details the video layer coding tools specified in VVC and develops the concepts behind the selected design choices. While many tools or variants thereof have been available before, the VVC design reveals many improvements compared to previous standards which result in compression gain and implementation friendliness. Furthermore, new tools such as the Adaptive Loop Filter, or Matrix-based Intra Prediction have been adopted which contribute significantly to the overall performance. The high-level syntax of VVC has been re-designed compared to previous standards such as HEVC, in order to enable dynamic sub-picture access as well as major scalability features already in version 1 of the specification.},
+  annotation = {VVC overview},
+  file = {E\:\\Documents\\Zotero\\storage\\M7A95RM3\\2020 - Versatile Video Coding – Algorithms and Specification - Wien 和 Bross.pdf},
+  keywords = {High efficiency video coding,IEC Standards,ISO Standards,Standards,Tools,Transform coding,Tutorials}
 }
 
 @inproceedings{HEVCCommonTestConditionsCTC,
@@ -222,7 +273,6 @@
   annotation = {行编码 节省存储空间},
   file = {E\:\\Documents\\Zotero\\storage\\N4GL59SF\\Lee 和 Kim - 2018 - An energy-efficient low-memory image compression s.pdf},
   journal = {EURASIP Journal on Image and Video Processing},
-  language = {en},
   number = {1}
 }
 
@@ -282,8 +332,7 @@
   year = {2016},
   pages = {38},
   annotation = {静态 帧内 各种算法压缩率统计},
-  file = {E\:\\Documents\\Zotero\\storage\\RBELLSP6\\Alexiou 等。 - 2016 - OVERVIEW AND BENCHMARKING SUMMARY FOR THE ICIP 201.pdf},
-  language = {en}
+  file = {E\:\\Documents\\Zotero\\storage\\RBELLSP6\\Alexiou 等。 - 2016 - OVERVIEW AND BENCHMARKING SUMMARY FOR THE ICIP 201.pdf}
 }
 
 @inproceedings{VVCComplexityAnalysisEncodeTime30xDecodeTime3x,
@@ -314,8 +363,7 @@
   abstract = {Video-coding systems have presented significant improvements driven by the wide adoption of video streaming technologies combined with demands for better quality from users. The most recent video-coding standard from JCT-VC, named High Efficiency Video Coding, greatly improved the compression rate compared to its predecessor, H.264/AVC, but an even better performance must be pursued to accommodate future technologies. This article presents a comparison between the current state-of-art HEVC standard with the most recent project that is being conducted by the same group of experts, entitled Versatile Video Coding (VVC). According to experimental results obtained using similar configurations for both encoders, the VVC reference software provides significant bit-rate savings of 44.4\% on average when compared to HEVC. However, this compression gains come with high computational costs: the VVC encoding time is on average 10.2 times higher when SIMD are used, and 15.9 times higher without such optimizations.},
   annotation = {VVC 压缩率优化 40 percent 时间 15x},
   file = {E\:\\Documents\\Zotero\\storage\\3FJ9AMHU\\2020 - Rate-Distortion and Complexity Comparison of HEVC and VVC Video Encoders - Siqueira 等。.pdf},
-  isbn = {978-1-72813-427-7},
-  language = {en}
+  isbn = {978-1-72813-427-7}
 }
 
 @article{VVCCompressRatioTest30Percent,
@@ -331,8 +379,13 @@
   file = {E\:\\Documents\\Zotero\\storage\\XLPBV5A5\\2020 - Comparing VVC, HEVC and AV1 using Objective and Subjective Assessments - Zhang 等。.pdf},
   journal = {arXiv:2003.10282 [eess]},
   keywords = {Electrical Engineering and Systems Science - Image and Video Processing},
-  language = {en},
   primaryclass = {eess}
+}
+
+@misc{VVCsoftwareVTM,
+  title = {{{VVC}} Reference Software {{VTM}}-12},
+  abstract = {VVC VTM reference software},
+  annotation = {VVC参考软件VTM12}
 }
 
 @inproceedings{VVCTestConditions,
