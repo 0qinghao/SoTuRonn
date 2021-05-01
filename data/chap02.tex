@@ -58,7 +58,14 @@ H.26X 编码标准中，通过帧内和帧间预测获得了相对原始像素�
 
 DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 8 种形式\upcite{FastFourierTransform}，图像、音视频领域中常用的是 II 类 DCT：
 \begin{equation}
-    X(k) = \sqrt{\frac{2}{N}}\varepsilon_{k}\sum_{n=0}^{N-1}x(n)\cos\left[\frac{k(2n+1)\pi}{2N}\right], \quad k=0,1...,N-1
+    \begin{gathered}
+        X(k) = \sqrt{\frac{2}{N}}\varepsilon_{k}\sum_{n=0}^{N-1}x(n)\cos\left[\frac{k(2n+1)\pi}{2N}\right], \quad k=0,1...,N-1 \\
+        \varepsilon_{k}= \left\{
+        \begin{aligned}
+            \frac{1}{\sqrt{2}}, \quad &k=0 \\
+            1, \quad &o.w
+        \end{aligned} \right.
+    \end{gathered}
     \label{1ddct}
 \end{equation}
 当 $k=0$ 时式中不再有余弦项，即 $X(0)\propto$ 信号 $x(n)$ 的均值，此时称 $X(0)$ 为信号 $x(n)$ 的直流 (Direct Current, DC) 分量；反之，当 $k>0$ 时，$k$ 越大式中的余弦信号频率越高，此时 $X(k)$ 反映了信号 $x(n)$ 在不同频率分量上的分布多寡，称为信号 $x(n)$ 的交流 (Alternate Current, AC) 分量。
@@ -98,7 +105,7 @@ DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 
 \end{enumerate}
 
 \subsection{量化}
-% 舒服的噪声
+% 实际上工业界看重主观质量评价 视觉上舒服的噪声
 从 H.264 将变换拆分为整数变换和比例缩放两部分以后，H.26X 标准中产生失真的原因集中到了量化上。
 
 
