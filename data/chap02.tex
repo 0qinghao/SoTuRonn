@@ -54,6 +54,7 @@ H.26X 系列标准中制定了多种帧内预测模式，包括平滑预测（DC
 \section{变换与量化技术}
 H.26X 编码标准中，通过帧内和帧间预测获得了相对原始像素值能量大幅降低的预测残差，且预测编码并未引入失真。后续的变换与量化进一步地对残差进行处理，使能量集中得到稀疏的待编码数据，同时也是编码过程中真正引入失真的步骤。
 \subsection{变换编码}
+\label{cha:TransformOverview}
 变换编码技术指将预测残差（某些特殊情况下是原始像素值）从空间域通过离散余弦变换 (Discrete Cosine Transform, DCT) 或离散正弦变换 (Discrete Sine Transform, DST) 转换到频域，以变换系数来表示数据。本节以 DCT 为例简单介绍 H.26X 标准中变换编码的应用场景及效果。
 
 DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 8 种形式\upcite{FastFourierTransform}，图像、音视频领域中常用的是 II 类 DCT：
@@ -66,7 +67,7 @@ DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 
             1, \quad &o.w
         \end{aligned} \right.
     \end{gathered}
-    \label{1ddct}
+    \label{equ:1ddct}
 \end{equation}
 当 $k=0$ 时式中不再有余弦项，即 $X(0)\propto$ 信号 $x(n)$ 的均值，此时称 $X(0)$ 为信号 $x(n)$ 的直流 (Direct Current, DC) 分量；反之，当 $k>0$ 时，$k$ 越大式中的余弦信号频率越高，此时 $X(k)$ 反映了信号 $x(n)$ 在不同频率分量上的分布多寡，称为信号 $x(n)$ 的交流 (Alternate Current, AC) 分量。
 
@@ -78,7 +79,7 @@ DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 
 \[
     X(0)=\frac{1}{2\sqrt{2}}(127+129+130+128+125+122+123+124)\cos(0)\approx 356
 \]
-同理根据式 \ref{1ddct} 计算所有的 $X(k)$ 得到：
+同理根据式 \ref{equ:1ddct} 计算所有的 $X(k)$ 得到：
 \[
     X(k): 356,6,-1,-4,0,0,0,0
 \]
@@ -93,21 +94,31 @@ DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 
             \sqrt{\frac{2}{N}}, \quad 1 \leqslant k,l \leqslant N-1
         \end{cases}
     \end{gathered}
-    \label{2ddct}
+    \label{equ:2ddct}
 \end{equation}
 
 变换编码技术在 H.26X 中存在较多研究和优化内容不再赘述，但以下几点值得一提：
 \begin{enumerate}
     \item DCT 去相关性的性能随着变换大小的增大而增强，但增强的比率迅速减缓，因此考虑到计算复杂度和编码性能的折衷，较常采用的是 4x4 与 8x8 DCT，很少用到 16x16 及更大的变换；
-    \item 同样出于计算复杂度的考虑，从 H.264 开始标准中的变换一般拆分为两部分进行，即与浮点运算无关的整数变换部分\upcite{IntergerDCTs}及分离出的比例缩放系数，后者将与量化合并为一次计算，提高了计算效率；
+    \item 同样出于计算复杂度的考虑，从 H.264 开始标准中的变换一般拆分为两部分进行，即与浮点运算无关的整数变换部分及分离出的比例缩放系数\upcite{IntergerDCTs}，后者将与量化合并为一次计算，提高了计算效率；
     \item 根据统计结果，对 4x4 大小的亮度块预测残差使用 DST 能提高约 0.8\% 的编码效率而计算复杂度不变\upcite{DCTDSTchoose}，因此从 H.265 开始将 DST 纳入考虑；
     \item 哈达玛变换与 DCT 处理后的变换残差绝对值之和 (Sum of Absolute Transformed Difference, SATD) 相近，但哈达玛变换计算复杂度极低，因此 H.265 将哈达玛变换与 SATD 作为快速预测模式选取的工具。
 \end{enumerate}
 
 \subsection{量化}
-% 实际上工业界看重主观质量评价 视觉上舒服的噪声
-从 H.264 将变换拆分为整数变换和比例缩放两部分以后，H.26X 标准中产生失真的原因集中到了量化上。
+从 H.264 将变换拆分为整数变换和比例缩放两部分以后，H.26X 标准中产生失真的原因集中到了量化上（图 \ref{fig:TransQuantCombine}）。H.26X 标准中仅规定了量化过程的解码方法，将编码端量化方式的选择策略交给编码器自行设计和优化，H.265 中可选的量化方法有传统标量量化、自适应量化 (Adaptive Quantization) 和率-失真优化量化 (Rate-Distortion Optimization Quantization, RDOQ)，本节以标量量化为例介绍量化的过程和作用。 
+\begin{figure}[htb]
+    \centering
+    \includegraphics{TransQuantCombine.pdf}
+    \caption{H.26X 中变换量化过程的拆分与合并}
+    \label{fig:TransQuantCombine}
+\end{figure}
 
+由于经过变换后的数据动态范围很大，需要通过量化将数据的取值范围压缩才能得到理想的编码效率。经过压缩必定会产生数据精度损失，因此量化是音视频编码中产生失真的根本原因，也是控制编码结果码率的最直接因素。标量量化的过程如下式：
+\begin{equation}
+    l_i=\left\lfloor \frac{c_i}{Q_{step}}+f \right\rfloor
+\end{equation}
+其中 $c_i$ 表示 \ref{cha:TransformOverview} 节所述的变换域系数，$Q_{step}$ 为量化步长，$l_i$ 为量化器的输出，$f$ 用于控制舍入。H.265 中可选 52 个量化步长，量化步长小代表数据精度损失小即失真小但同时编码效率低。需要注意量化并非简单地对输入的变换域系数平等地做缩放。根据人眼对亮度、低频分量敏感，对色差、高频分量较不敏感的生物特性，各类图像视频编码方案中均存在量化矩阵的概念。即对不同频率分量的变换域系数做相应的缩放，例如对低频分量做更轻微的量化以保证良好的视觉效果。值得一提的是相对于学术界关注峰值信噪比 (Peak Signal-to-Noise Ratio, PSNR)、结构相似度 (Structural Similarity Index, SSIM) 等客观图像质量评价指标，工业界更关心的是平均主观得分 (Mean Opinion Score, MOS)，即实验者根据自身的观看体验给出的图像视频质量分数，工业界中甚至有关于“让人感觉舒服，错以为图像质量好的失真”的研究，此为另外的研究方向不再展开。总之针对不同频率分量做不同级别的量化显得尤为重要。
 
 \section{环路后处理技术}
 \subsection{去方块滤波}
@@ -129,25 +140,25 @@ DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 
 互联网开源精神是当今学术界与工业界发展的重要推手，而视频编解码这一涉及到成像系统、生物信息、数学、统计学、计算机以及集成电路的庞大学科，如果没有一个系统的开源项目让各学科的研究人员参与进来，而是由单一的某一组织闭门造车是无法得到长足发展的。本小节总结了目前常用的软、硬件视频编码开源项目，本课题就是基于其中部分项目开展的。
 \subsection{软件视频编码开源项目}
 \begin{itemize}
-    \item JM
+    \item JM\upcite{AVCsoftwareJM}
 
-    JM\upcite{AVCsoftwareJM} 是制定 H.264 标准的联合开发组 (Joint Video Team, JVT) 负责维护的 H.264 编解码参考软件。JM 是学术界常用的编码器，其实现了 H.264 的所有特性，内部没有使用多线程或进行汇编层级的优化，因此其编解码速度较慢无法实现实时编码，多用于研究和测试标准性能。
+    JM 是制定 H.264 标准的联合开发组 (Joint Video Team, JVT) 负责维护的 H.264 编解码参考软件。JM 是学术界常用的编码器，其实现了 H.264 的所有特性，内部没有使用多线程或进行汇编层级的优化，因此其编解码速度较慢无法实现实时编码，多用于研究和测试标准性能。
 
     \item x264
 
     x264 是由 VideoLAN 维护的 H.264 编码器。x264 是工业界最常用的 H.264 编码器，其内部集成了丰富的快速、并行算法，使得编解码效率得到了极大提升，被应用在各类开源音视频处理框架中。目前最完善的多媒体处理软件 FFmpeg 在 H.264 部分就内嵌了 x264 用于编码。
 
-    \item HM
+    \item HM\upcite{HEVCsoftwareHM16}
 
-    HM\upcite{HEVCsoftwareHM16} 是制定 H.265 标准的视频编码联合工作组 (Joint Collaborative Team on Video Coding, JCT-VC) 负责维护的 H.265 编解码参考软件。HM 是学术界在研究 H.265 和下一代视频编码标准时常用的编码器，其实现了 H.265 的所有特性（包括部分未写入标准的会议提案），内部没有使用多线程或进行汇编层级的优化，因此其编解码速度较慢无法实现实时编码，多用于研究和测试标准性能。
+    HM 是制定 H.265 标准的视频编码联合工作组 (Joint Collaborative Team on Video Coding, JCT-VC) 负责维护的 H.265 编解码参考软件。HM 是学术界在研究 H.265 和下一代视频编码标准时常用的编码器，其实现了 H.265 的所有特性（包括部分未写入标准的会议提案），内部没有使用多线程或进行汇编层级的优化，因此其编解码速度较慢无法实现实时编码，多用于研究和测试标准性能。
 
-    \item VTM
+    \item VTM\upcite{VVCsoftwareVTM}
 
-    VTM\upcite{VVCsoftwareVTM} 是制定 H.266 标准的联合视频探索小组 (Joint Video Exploration Team, JVET) 负责维护的 H.266 编解码参考软件，随着 H.266 编码提案的征集仍在快速迭代中，在 H.266 标准探索的初期曾称为 JEM。VTM 是联合小组在制定下一代视频编码标准 H.266 时使用的编码器，用于测试编码提案的性能。
+    VTM 是制定 H.266 标准的联合视频探索小组 (Joint Video Exploration Team, JVET) 负责维护的 H.266 编解码参考软件，随着 H.266 编码提案的征集仍在快速迭代中，在 H.266 标准探索的初期曾称为 JEM。VTM 是联合小组在制定下一代视频编码标准 H.266 时使用的编码器，用于测试编码提案的性能。
 
-    \item VVenC
+    \item VVenC\upcite{VVCsoftwareVVenC}
     
-    VVenC(Fraunhofer Versatile Video Encoder)\upcite{VVCsoftwareVVenC} 是在考虑到 VTM 过于庞大冗杂的编码工具后，根据多种复杂度优化提案在编码性能和编码时间之间取折衷的 H.266 编码器。维护者来自 VTM 开发的主要参与方、H.266 标准制定的重要参与者 Fraunhofer HHI。
+    VVenC(Fraunhofer Versatile Video Encoder) 是在考虑到 VTM 过于庞大冗杂的编码工具后，根据多种复杂度优化提案在编码性能和编码时间之间取折衷的 H.266 编码器。维护者来自 VTM 开发的主要参与方、H.266 标准制定的重要参与者 Fraunhofer HHI。
 \end{itemize}
 
 \subsection{硬件视频编码开源项目}
@@ -156,3 +167,5 @@ DCT 是一种在频域对数字信号进行分析的工具，在数学上共有 
 
     OpenASIC H.264/H.265 Encoder RTL IP 是由复旦大学微电子学院视频图像处理科研团队发布的 H.264/H.265 开源 RTL IP，由开源芯片社区 OpenASIC 共同维护。其中 H.264 Encoder RTL IP 实现了 H.264 标准编码流程，最大支持 1920x1088@30fps 实时编码，已被部分公司、研究所研究使用；H.265 Encoder RTL IP 发布了 2 个版本，实现了帧内/帧间预测、熵编码、环路后处理以及基础的码率控制，满足 0.13$\mu$m 工艺 400MHz 无时序违例综合，最大支持 4K@30fps 实时编码。
 \end{itemize}
+
+\section{本章小结}
