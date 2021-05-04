@@ -1,0 +1,21 @@
+clean:
+	rm *.aux 
+	rm *.log 
+	rm *.gz 
+	rm *.thm 
+	rm *.toc 
+	rm *.bak -f
+	rm *.blg 
+	rm *.idx 
+	rm *.ind 
+	rm *.out 
+	rm *.bbl 
+	rm *.ilg 
+	rm *.loe 
+	rm *.lof 
+	rm *.lot 
+	rm *.glo 
+	rm *.idx 
+	rm *.gls 
+	rm *.hd 
+

@@ -1,0 +1,3 @@
+clean:
+	rm *.aux *.log *.gz *.thm *.toc *.bak *.blg *.idx *.ind *.out *.bbl *.ilg *.loe *.lof *.lot *.glo *.idx *.gls *.hd *.pdf
+
