@@ -3,10 +3,7 @@
 \label{cha:c2}
 本章由简要的视频编码技术发展史开始，引出视频编码中最为核心的 5 项技术：预测编码、变换量化 (Transform and Quantization, TransQuant)、环路后处理、熵编码以及率-失真优化 (Rate-Distortion Optimization, RDO)，为后文分析视频编码的可优化方向以及分析所提出算法的可行性打下基础。在早期视频编码标准中并未包含上述所有核心技术，但随着各类应用对视频编码效率的需求日渐严苛，该 5 项核心技术被证明对编码效率提高起着核心作用，成为了缺一不可的存在。目前仍在征集提案的 H.266 标准的发展趋势亦是在该框架下再进行部分精细优化。
 
-在正文之前，首先申明以下用词：
-1) 统一使用视频“编码”而非视频“压缩”。在视频编解码领域，“编码”与“压缩”表达相同的含义，都指经过预测、变换量化、熵编码等操作达到减小数据冗余、压缩视频数据量的目的。编码是手段，压缩是目的，按照习惯统一使用视频编码这一表述，类似地，使用编码标准、编码方案、编码效率等表述；
-2) 为了直接体现出编码标准的发展历程，不使用高级视频编码 (Advanced Video Coding, AVC)、高性能视频编码 (High Efficiency Video Coding, HEVC) 和多功能视频编码 (Versatile Video Coding, VVC) 的表述，统一使用 H.264、H.265 和 H.266，两类表述在含义上并无差异；
-3) 由联合专家组维护的各标准参考模型随着版本迭代可能存在不同的命名，例如 H.266 的参考模型在早期曾称为 JEM(Joint Exploration Model)，本文中统一使用以下命名：用于 H.264 的 JM(Joint Test Model) 模型\upcite{AVCsoftwareJM}、用于 H.265 的 HM(HEVC Test Model) 模型\upcite{HEVCsoftwareHM16}以及用于 H.266 的 VTM(VVC Test Model) 模型\upcite{VVCsoftwareVTM}。
+在正文之前，首先申明以下用词：1) 统一使用视频“编码”而非视频“压缩”。在视频编解码领域，“编码”与“压缩”表达相同的含义，都指经过预测、变换量化、熵编码等操作达到减小数据冗余、压缩视频数据量的目的。编码是手段，压缩是目的，按照习惯统一使用视频编码这一表述，类似地，使用编码标准、编码方案、编码效率等表述；2) 为了直接体现出编码标准的发展历程，不使用高级视频编码 (Advanced Video Coding, AVC)、高性能视频编码 (High Efficiency Video Coding, HEVC) 和多功能视频编码 (Versatile Video Coding, VVC) 的表述，统一使用 H.264、H.265 和 H.266，两类表述在含义上并无差异；3) 由联合专家组维护的各标准参考模型随着版本迭代可能存在不同的命名，例如 H.266 的参考模型在早期曾称为 JEM(Joint Exploration Model)，本文中统一使用以下命名：用于 H.264 的 JM(Joint Test Model) 模型\upcite{AVCsoftwareJM}、用于 H.265 的 HM(HEVC Test Model) 模型\upcite{HEVCsoftwareHM16}以及用于 H.266 的 VTM(VVC Test Model) 模型\upcite{VVCsoftwareVTM}。
 
 \section{视频编码技术发展历史}
 应用广泛的 H.265 与正在征集提案的 H.266 视频编码标准，是数字视频编码技术 40 年的研究和 30 年的标准化的成果，代表着各时期最先进的视频编码技术。在视频编码技术发展的早期（H.264 制定以前），国际上存在 2 套应用广泛的标准，分别是国际电信联盟-电信标准化部门 (International Telecommunication Union-Telecommunication Standardization Sector, ITU-T) 制定的 H.26X 系列，与国际标准化组织 (International Organization for Standardization, ISO) / 国际电工委员会 (International Electrotechnical Commission, IEC) 制定的 MPEG 系列。前者广泛应用于网络视频通信，后者主要应用于视频存储和广播流媒体。
@@ -15,7 +12,7 @@ H.264 以后的编码标准则是由 ITU-T 派出的视频编码专家组 (Video
 H.26X 标准自问世至今在整体框架上并未变动，如图 \ref{fig:BlockDiagram} 所示，包含帧内/帧间预测、变换量化、熵编码、环路后处理以及率-失真优化模块。但各代标准在上述 5 大模块中都加入了新的编码工具，使编码效率每代提高约 50\%\upcite{H266Overview}。例如帧内预测模式自 H.264 的 9 种发展到了 H.266 的 67 种；变换量化过程经过拆分重组减小了计算复杂度；环路后处理方面 H.265 中引入了新的自适应补偿机制，大幅提高了图像质量。
 \begin{figure}[hbt]
     \centering
-    \includegraphics{BlockDiagram.png}
+    \includegraphics[scale=0.25]{H26XBlockDiagram.png}
     \caption{H.26X 标准视频编码框架}
     \label{fig:BlockDiagram}
 \end{figure}
