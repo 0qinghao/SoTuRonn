@@ -1,0 +1,39 @@
+% !Mode:: "TeX:UTF-8"
+\chapter{帧内无损编码优化算法}
+\label{cha:c3}
+本章从帧内无损编码的可优化方向的分析开始，引出本研究课题中提出的 3 个优化算法：1) L 形迭代预测算法 L-IP；2) L 形分块算法 L-BP；3) 残差中值边缘检测算法 R-MED。在具体描述所提出算法之前均先详细地分析了标准规定或 HM 参考软件中的实现方案，以与所提算法形成对比。最后在对各算法性能单独测试的基础上，给出联合算法的性能测试，以证明所提算法的有效性。
+
+\section{帧内无损编码的可优化方向}
+当将优化对象聚焦到 H.26X 的帧内无损编码时，编码涉及到的主要模块有：帧内预测模块、熵编码模块以及贯穿编码过程的率-失真优化模块。本课题提出的 3 个优化算法是在深入分析帧内预测过程及率-失真优化过程后提出的。
+
+对帧内预测模块进行分析。H.26X 的帧内预测是基于块结构进行的，在 H.265 中最小的预测单元大小为 4x4，但针对视频图像中纹理丰富的区域 4x4 大小仍显得有些不足。出于计算复杂度的考虑，H.26X 标准暂时难以跳出块预测的框架，因此寻找更为精准的预测方式是一个可行的优化方向。基于此，
+
+\section{帧内预测过程分析}
+\label{cha:IntraPredDetail}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics{IntraAngModeOverview.pdf}
+    \caption{H.265 帧内预测角度模式}
+    \label{fig:IntraAngModeOverview}
+\end{figure}
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics{IntraProjection.png}
+    \caption{H.265 帧内预测结果示例}
+    \label{fig:IntraProjection}
+\end{figure}
+% 可能会滤波 所以不是完全投影
+
+\section{帧内无损编码的预测过程优化}
+
+\section{帧内分块决策过程分析}
+
+\section{帧内无损编码的分块过程优化}
+
+\section{系数编码过程分析}
+
+\section{待编码系数的再处理}
+
+\section{联合算法性能测试}
