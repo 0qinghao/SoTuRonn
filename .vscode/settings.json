@@ -2,5 +2,6 @@
     "search.exclude": {
         "**/.git": true,
         "**/*.pdf": true,
-    }
+    },
+    "latex-workshop.latex.autoBuild.run": "onSave"
 }
