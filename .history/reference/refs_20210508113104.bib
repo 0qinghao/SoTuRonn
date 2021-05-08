@@ -17,20 +17,6 @@
   note = {doi: 10.1109/TIP.2010.2083675}
 }
 
-@inproceedings{范式哈夫曼,
-  title = {A Hardware Design Method for {{Canonical Huffman Code}}},
-  booktitle = {2017 {{Progress}} in {{Electromagnetics Research Symposium}} - {{Fall}} ({{PIERS}} - {{FALL}})},
-  author = {Chen, Yi and Wan, Guo Chun and Xia, Zi Wei and Tong, Mei Song},
-  year = {2017},
-  month = nov,
-  pages = {2212--2215},
-  doi = {10.1109/PIERS-FALL.2017.8293507},
-  abstract = {With the development of multimedia network and computer technology, Canonical Huffman Code hybrid compression algorithm has been widely used, improving image processing technology rapidly. As an important subset of the Huffman algorithm, Canonical Huffman Code solves many shortcomings of the Huffman algorithm. The Canonical Huffman Code can be coded based on the coded bit length. So that the output of the code table is greatly reduced, and the coding process no longer needs a binary tree structure. At the same time, memory footprint is also reduced significantly because the speed of coding is increasing. In this paper, we use the optimized bubble sort algorithm and Canonical Huffman Code algorithm. In the case of using a small amount of FPGA hardware resources and ensuring a minimum coding variance, a comparable clock frequency can be made.},
-  file = {E\:\\Documents\\Zotero\\storage\\8HDLBVCM\\2017 - A hardware design method for Canonical Huffman Code - Chen 等。.pdf},
-  keywords = {Algorithm design and analysis,Clocks,Electromagnetics,Encoding,Hardware,Image coding,Indexes},
-  note = {doi: 10.1109/PIERS-FALL.2017.8293507}
-}
-
 @misc{AVCsoftwareJM,
   title = {Bossen {{F}}, {{Sharman K}}, {{Suehring K}}, et al. {{H}}.264/{{AVC JM}} Reference Software [{{CP}}/{{OL}}]. [2021-04-23]. {{https://vcgit.hhi.fraunhofer.de/jvet/JM}}},
   abstract = {H.264/AVC JM reference software},
@@ -337,22 +323,22 @@
   note = {doi: 10.1109/VCIP49819.2020.9301820}
 }
 
-@techreport{HEVCCommonTestConditionsCTC,
-  title = {Common {{HM}} Test Conditions and Software Reference Configurations},
-  author = {Bossen, Frank},
+@inproceedings{HEVCCommonTestConditionsCTC,
+  title = {Common Test Conditions and Software Reference Configurations},
+  booktitle = {{{JCTVC}}-{{L1100}}},
+  author = {Bossen, Frank and others},
   year = {2013},
-  month = apr,
-  annotation = {HEVC通用测试配置},
-  number = {Joint Collaborative Team on Video Coding - L1100 version 1}
+  volume = {12},
+  annotation = {HEVC通用测试配置}
 }
 
-@techreport{HEVCExSCCTestConditions,
+@inproceedings{HEVCExSCCTestConditions,
   title = {Common Test Conditions and Software Reference Configurations for {{HEVC}} Range Extensions},
+  booktitle = {{{JCT}}-{{VC P1006}}, 16th {{Meeting}} of {{JCT}}-{{VC}}},
   author = {Rosewarne, C and Sharman, K and Flynn, D},
   year = {2014},
-  month = feb,
-  annotation = {HEVC扩展标准测试配置},
-  number = {Joint Collaborative Team on Video Coding - P1006 version 2}
+  pages = {1--10},
+  annotation = {HEVC扩展标准测试配置}
 }
 
 @article{HEVCSCCOverview,
@@ -528,39 +514,6 @@
   note = {doi: 10.1109/TIP.2016.2571065}
 }
 
-@article{RatedistortionOptimizationVideo,
-  title = {Rate-Distortion Optimization for Video Compression},
-  author = {Sullivan, G.J. and Wiegand, T.},
-  year = {1998},
-  month = nov,
-  volume = {15},
-  pages = {74--90},
-  issn = {1558-0792},
-  doi = {10.1109/79.733497},
-  abstract = {The rate-distortion efficiency of video compression schemes is based on a sophisticated interaction between various motion representation possibilities, waveform coding of differences, and waveform coding of various refreshed regions. Hence, a key problem in high-compression video coding is the operational control of the encoder. This problem is compounded by the widely varying content and motion found in typical video sequences, necessitating the selection between different representation possibilities with varying rate-distortion efficiency. This article addresses the problem of video encoder optimization and discusses its consequences on the compression architecture of the overall coding system. Based on the well-known hybrid video coding structure, Lagrangian optimization techniques are presented that try to answer the question: what part of the video signal should be coded using what method and parameter settings?.},
-  file = {E\:\\Documents\\Zotero\\storage\\HFFSQG64\\1998 - Rate-distortion optimization for video compression - Sullivan 和 Wiegand.pdf;E\:\\Documents\\Zotero\\storage\\LANRJ6WY\\1998 - Rate-distortion optimization for video compression - Sullivan 和 Wiegand.pdf},
-  journal = {IEEE Signal Processing Magazine},
-  keywords = {Bit rate,Entropy coding,ISO,Motion compensation,Quantization,Rate-distortion,Switches,Video codecs,Video coding,Video compression},
-  number = {6},
-  note = {doi: 10.1109/79.733497}
-}
-
-@article{ResidualVisible,
-  title = {Efficient Prediction Methods with Enhanced Spatial-Temporal Correlation for {{HEVC}}},
-  author = {Fan, Kui and Wang, Ronggang and Li, Ge and Gao, Wen},
-  year = {2019},
-  month = dec,
-  volume = {29},
-  pages = {3716--3728},
-  issn = {1051-8215, 1558-2205},
-  doi = {10.1109/TCSVT.2018.2885002},
-  abstract = {The state-of-the-art high efficiency video coding (HEVC) standard provides a significant improvement relative to H.264/AVC, with almost 50\% bitrate reduction. However, there are still requirements to further improve the coding performance of HEVC. In this paper, we reveal some problems in both intra and inter prediction by giving detailed observations, and solve them by further exploring spatial and temporal correlations. First, it is noteworthy that large boundary distortions in intra prediction blocks arise from the simplistic extrapolation operation with partial reference samples. To reduce these boundary distortions, we propose an enhanced prediction boundary filtering method based on generalized Gaussian distribution functions, and extend this method to merge prediction. Second, we combine intra and inter prediction to create a novel prediction method, in which spatial and temporal correlations are simultaneously considered. In addition, the existing merge mode can only provide accurate prediction results for simple movements, owing to the lack of motion estimation. To improve the flexibility, we optimize the existing merge mode by intensifying the temporal correlation with a simple motion search process. The experimental results show that the proposed methods achieve consistent bitrate savings, 1.3\% for all intra, 1.5\% for random access, 2.5\% (up to 4.2\%) for low delay P, and 1.2\% for low delay B configuration. The encoding time only rises by 70\% - 80\%, and the decoding time increases negligibly.},
-  file = {E\:\\Documents\\Zotero\\storage\\A89NN52C\\2019 - Efficient Prediction Methods With Enhanced Spatial-Temporal Correlation for HEVC - Fan 等。.pdf},
-  journal = {IEEE Transactions on Circuits and Systems for Video Technology},
-  number = {12},
-  note = {doi: 10.1109/TCSVT.2018.2885002}
-}
-
 @article{SampleAdaptiveOffset,
   title = {Sample {{Adaptive Offset}} in the {{HEVC Standard}}},
   author = {Fu, Chih-Ming and Alshina, Elena and Alshin, Alexander and Huang, Yu-Wen and Chen, Ching-Yeh and Tsai, Chia-Yang and Hsu, Chih-Wei and Lei, Shaw-Min and Park, Jeong-Hoon and Han, Woo-Jin},
@@ -632,7 +585,7 @@
   month = nov,
   address = {{Incheon, Korea}},
   file = {E\:\\Documents\\Zotero\\storage\\5DAKLDCH\\HM10.0-RangeExt-TI-losslessAnchor_vs_SAP_HVonly.xls;E\:\\Documents\\Zotero\\storage\\PXFLXX6U\\HM10.0-RangeExt-TI-losslessAnchor_vs_SAP.xls;E\:\\Documents\\Zotero\\storage\\ZEFL6KIV\\JCTVC-M0056.doc},
-  number = {Joint Collaborative Team on Video Coding - M0056 version 1}
+  number = {Joint Collaborative Team on Video Coding (M0056)}
 }
 
 @inproceedings{SAP-SAPHVSWP2DTM,
@@ -721,13 +674,15 @@
   keywords = {codec,encoder,h266,video,vvc}
 }
 
-@techreport{VVCTestConditions,
-  title = {{{JVET}} Common Test Conditions and Software Reference Configurations for Lossless, near Lossless, and Mixed Lossy/Lossless Coding},
-  author = {Ma, Tsung-Chuan and Nalci, A and Nguyen, Tung},
-  year = {2020},
-  month = apr,
+@inproceedings{VVCTestConditions,
+  title = {{{JVET}} Common Test Conditions and Software Reference Configurations},
+  shorttitle = {{{JVET}}-{{J1010}}},
+  author = {Boyce, Jill and Suehring, Karsten and Li, Xiang and Seregin, Vadim},
+  year = {2018},
+  month = jul,
+  abstract = {This document defines common test conditions and software reference configurations to be used in the context of core experiments (CE) conducted after the 10 th JVET meeting. These common test conditions are also recommended for use in technical contributions to the 11 th and following JVET meetings, if applicable.},
   annotation = {VVC测试配置},
-  number = {Joint Video Experts Team - Q2014 version 5}
+  file = {E\:\\Documents\\Zotero\\storage\\J42CZN8R\\2018 - JVET-J1010 JVET common test conditions and software reference configurations - Boyce 等。.pdf}
 }
 
 @article{XiDianIntraPredictionH264,
