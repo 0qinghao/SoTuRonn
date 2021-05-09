@@ -137,47 +137,43 @@ H.26X 传统的基于块结构的预测中，每个预测单元仅使用 1 种�
 \end{table}
 
 最后，应用 L-IP 算法进行实际编码测试，与 H.265 标准参考软件 HM-16.21\upcite{HEVCsoftwareHM16} 编码结果对比，统计出编码效率提升的幅度。测试的对象为 JCT-VC 推荐的标准测试序列，包括 5 类自然图像：ClassA(2560$\times$1600), ClassB(1080p), ClassC(WVGA), ClassD(WQVGA), ClassE(720p) 和 1 类屏幕图像：ClassF。测试严格按照 H.265 通用测试环境 (Common Test Condition, CTC)\upcite{HEVCCommonTestConditionsCTC}进行配置，由于所提 L-IP 算法是为帧内无损编码设计的，因此仅在全帧内 (All Intra, AI) 的无损配置下进行测试。统计结果如表 \ref{tab:L-IPSummary} 所示。
-\begin{table}[htbp]
+\begin{table}[]
     \centering
     \caption{L-IP 算法性能测试}
     \label{tab:L-IPSummary}
     \begin{tabular}{@{}clccc@{}}
         \toprule
-        序列类别                               & \multicolumn{1}{c}{序列}     & 分辨率           & 码率     & 编码时间 \\ \midrule
-        \multirow{2}{*}{ClassA}                & PeopleOnStreet               & 2560$\times$1600 & -11.29\% & 125.98\% \\
-                                               & Traffic                      & 2560$\times$1600 & -11.46\% & 124.76\% \\
-        \multirow{5}{*}{ClassB}                & BasketballDrive              & 1920$\times$1080 & -4.20\%  & 126.57\% \\
-                                               & BQTerrace                    & 1920$\times$1080 & -8.57\%  & 125.85\% \\
-                                               & Cactus                       & 1920$\times$1080 & -3.74\%  & 126.96\% \\
-                                               & Kimono                       & 1920$\times$1080 & -7.71\%  & 127.41\% \\
-                                               & ParkScene                    & 832$\times$480   & -6.58\%  & 127.37\% \\
-        \multirow{4}{*}{ClassC}                & BasketballDrill              & 832$\times$480   & -5.51\%  & 126.32\% \\
-                                               & BQMall                       & 832$\times$480   & -6.17\%  & 126.48\% \\
-                                               & PartyScene                   & 832$\times$480   & -5.58\%  & 125.11\% \\
-                                               & RaceHorsesC                  & 832$\times$480   & -8.10\%  & 124.38\% \\
-        \multirow{4}{*}{ClassD}                & BasketballPass               & 416$\times$240   & -12.36\% & 124.54\% \\
-                                               & BlowingBubbles               & 416$\times$240   & -5.47\%  & 125.01\% \\
-                                               & BQSquare                     & 416$\times$240   & -5.27\%  & 124.80\% \\
-                                               & RaceHorses                   & 416$\times$240   & -8.51\%  & 125.34\% \\
-        \multirow{3}{*}{ClassE}                & FourPeople                   & 1280$\times$720  & -12.51\% & 124.64\% \\
-                                               & Johnny                       & 1280$\times$720  & -10.97\% & 124.51\% \\
-                                               & KristenAndSara               & 1280$\times$720  & -11.86\% & 123.96\% \\
-        \multirow{4}{*}{ClassF}                & BasketballDrillText          & 832$\times$480   & -6.07\%  & 124.67\% \\
-                                               & ChinaSpeed                   & 1024$\times$768  & -17.15\% & 121.53\% \\
-                                               & SlideEditing                 & 1280$\times$720  & -13.57\% & 123.07\% \\
-                                               & SlideShow                    & 1280$\times$720  & -22.26\% & 126.19\% \\ \midrule
-        \multicolumn{2}{l}{ClassA$\sim$E 均值} & -                            & -8.10\%          & 125.56\%            \\ \midrule
-        \multicolumn{2}{l}{ClassF 均值}        & -                            & -14.76\%         & 123.87\%            \\ \midrule
-        \multicolumn{2}{l}{ClassA$\sim$F 均值} & -                            & -9.31\%          & 125.25\%            \\ \midrule
-        \multicolumn{2}{l}{解码时间}           & \multicolumn{3}{c}{103.21\%}                                          \\ \bottomrule
+        序列类别                               & \multicolumn{1}{c}{序列}     & \multicolumn{1}{l}{分辨率} & 码率     & 编码时间 \\ \midrule
+        \multirow{2}{*}{ClassA}                & PeopleOnStreet               & 2560$\times$1600           & -11.29\% & 125.98\% \\
+                                               & Traffic                      & 2560$\times$1600           & -11.46\% & 124.76\% \\
+        \multirow{5}{*}{ClassB}                & BasketballDrive              & 1920$\times$1080           & -4.20\%  & 126.57\% \\
+                                               & BQTerrace                    & 1920$\times$1080           & -8.57\%  & 125.85\% \\
+                                               & Cactus                       & 1920$\times$1080           & -3.74\%  & 126.96\% \\
+                                               & Kimono                       & 1920$\times$1080           & -7.71\%  & 127.41\% \\
+                                               & ParkScene                    & 832$\times$480             & -6.58\%  & 127.37\% \\
+        \multirow{4}{*}{ClassC}                & BasketballDrill              & 832$\times$480             & -5.51\%  & 126.32\% \\
+                                               & BQMall                       & 832$\times$480             & -6.17\%  & 126.48\% \\
+                                               & PartyScene                   & 832$\times$480             & -5.58\%  & 125.11\% \\
+                                               & RaceHorsesC                  & 832$\times$480             & -8.10\%  & 124.38\% \\
+        \multirow{4}{*}{ClassD}                & BasketballPass               & 416$\times$240             & -12.36\% & 124.54\% \\
+                                               & BlowingBubbles               & 416$\times$240             & -5.47\%  & 125.01\% \\
+                                               & BQSquare                     & 416$\times$240             & -5.27\%  & 124.80\% \\
+                                               & RaceHorses                   & 416$\times$240             & -8.51\%  & 125.34\% \\
+        \multirow{3}{*}{ClassE}                & FourPeople                   & 1280$\times$720            & -12.51\% & 124.64\% \\
+                                               & Johnny                       & 1280$\times$720            & -10.97\% & 124.51\% \\
+                                               & KristenAndSara               & 1280$\times$720            & -11.86\% & 123.96\% \\
+        \multirow{4}{*}{ClassF}                & BasketballDrillText          & 832$\times$480             & -6.07\%  & 124.67\% \\
+                                               & ChinaSpeed                   & 1024$\times$768            & -17.15\% & 121.53\% \\
+                                               & SlideEditing                 & 1280$\times$720            & -13.57\% & 123.07\% \\
+                                               & SlideShow                    & 1280$\times$720            & -22.26\% & 126.19\% \\ \midrule
+        \multicolumn{2}{c}{ClassA$\sim$E 均值} & -                            & -8.10\%                    & 125.56\%            \\ \midrule
+        \multicolumn{2}{c}{ClassF 均值}        & -                            & -14.76\%                   & 123.87\%            \\ \midrule
+        \multicolumn{2}{c}{ClassA$\sim$F 均值} & -                            & -9.31\%                    & 125.25\%            \\ \midrule
+        \multicolumn{2}{c}{解码时间}           & \multicolumn{3}{c}{103.21\%}                                                    \\ \bottomrule
     \end{tabular}
 \end{table}
 
-使用码率降低的百分比来衡量算法性能，表中负值表示使用 L-IP 算法编码得到的结果码率对比 H.265 标准降低。使用编码时间衡量算法复杂度，表中的编码时间、解码时间百分比数值由下式计算得到：
-\begin{equation}
-    \Delta T=\frac{T_{proposed}}{T_{anchor}}\times 100\%
-\end{equation}
-$T_{proposed}$ 表示所提算法的编码或解码所用时间，$T_{anchor}$ 表示 HM 参考软件编码或解码用时。ClassA\textasciitilde E 中，序列 FourPeople 得到了最大的 12.51\% 的编码效率提升，均值为 8.10\%；ClassF 中，序列 SlideShow 获得了最大的 22.26\% 的编码效率提升，均值为 14.76\%。算法复杂度方面，L-IP 使编码时间增加了 25\%，解码时间基本不变。
+使用码率降低的百分比来衡量算法性能，表中负值表示使用 L-IP 算法编码得到的结果码率降低了。
 
 
 \section{帧内无损编码的分块过程优化}

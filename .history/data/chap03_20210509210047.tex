@@ -14,7 +14,7 @@
 块结构的预测准确度仍不够高的原因在于部分被预测点距离参考点的空间距离过大，基于此本课题中提出了 L 形迭代预测算法，在保持整体帧内预测流程仍是块结构的情况下将所有待预测点与参考点的距离缩短到了 1 单位。
 
 对率-失真优化中的编码单元分割过程进行分析。为了同时在图像中的平缓区域和细节丰富区域得到良好的编码效率，H.26X 在 RDO 过程中会进行搜索，自适应地确定编码块的尺寸，即在平缓区域用较大的块进行编码，在细节丰富的区域划分出多而小的编码块进行编码。
-在 H.265 中，帧内预测部分采用基于四叉树的循环分层结构，即对于一个 2N$\times$2N 大小的 CU，PU 可选择的模式只有两种：划分为 4 个 N$\times$N 或保留 2N$\times$2N。仅能 2 选 1 的划分模式难以满足图像视频中复杂多变的纹理的编码需求，因此提供更多可选的划分模式是一个可行的优化方向。
+在 H.265 中，帧内预测部分采用基于四叉树的循环分层结构，即对于一个 2Nx2N 大小的 CU，PU 可选择的模式只有两种：划分为 4 个 NxN 或保留 2Nx2N。仅能 2 选 1 的划分模式难以满足图像视频中复杂多变的纹理的编码需求，因此提供更多可选的划分模式是一个可行的优化方向。
 基于此本课题中提出了一种非对称的 L 形分块算法，使 RDO 过程可以搜索更多的分块可能性。
 
 对无损模式下帧内预测的残差进行分析。H.26X 中基础的无损编码是通过简单地跳过变换、量化和环路后处理等可能引入数值失真的步骤实现的\upcite{BypassImprovingSCC}。由于缺少了变换这一将数值能量集中的步骤，熵编码面临的压力剧增，既耗时又无法得到理想的编码效率。
@@ -70,7 +70,7 @@ H.26X 的帧内无损编码方案中，预测过程的准确度直接决定了�
 
 分析图 \ref{fig:ResidualVisible} 的残差分布可得 2 条结论：1) 预测值的不准确性随着被预测点与参考点的距离增大而提升。换句话说，靠近参考点的待预测点能被准确地预测，较远区域的待预测点得到的预测效果差。这一现象是空间相关性随着预测距离增大而衰减造成的；2) 不同的预测模式下，靠近参考点的边界区域的预测准确度变化很大。观察图可以发现，模式 2\textasciitilde9 中左侧边界的预测准确度远高于上侧边界，这是由于模式 2\textasciitilde9 的预测过程中用到更多的左侧参考点，这些参考点十分靠近左边界。相反地，模式 27\textasciitilde34 的预测过程中用到更多的上侧参考点，因此表现为上侧边界的预测准确度高。
 
-基于上述分析，为了对抗帧内预测中远离参考点的区域预测效果差的缺陷，本课题提出了 L 形迭代预测算法 L-IP。L-IP 的核心思想是将二维待预测块分割为一系列一维 L 形（$\ulcorner$ 形）区域，各 L 形区域自左上角开始迭代地进行帧内预测，每次预测的参考点均为临近的上一次迭代的 L 形区域。对于一个 N$\times$N 大小的预测单元，算法将其分割为 N-1 个 L 形区域和 1 个像素点（处于右下角的像素点），如图 \ref{fig:L-IPOverview}(a) 所示。
+基于上述分析，为了对抗帧内预测中远离参考点的区域预测效果差的缺陷，本课题提出了 L 形迭代预测算法 L-IP。L-IP 的核心思想是将二维待预测块分割为一系列一维 L 形（$\ulcorner$ 形）区域，各 L 形区域自左上角开始迭代地进行帧内预测，每次预测的参考点均为临近的上一次迭代的 L 形区域。对于一个 NxN 大小的预测单元，算法将其分割为 N-1 个 L 形区域和 1 个像素点（处于右下角的像素点），如图 \ref{fig:L-IPOverview}(a) 所示。
 第一个 L 形区域 L1 与 H.265 标准的帧内预测一致，使用预测块外的左侧和上侧参考点（L0）进行预测，其余包含 m 个像素点的 L 形区域均使用包含 m+2 个像素点的上一次迭代后的重建区域作为参考点进行预测。除去参考点位置不同，剩余的预测过程几乎与 H.26X 一致，同样使用投影与插值实现预测：
 \begin{equation}
     P_{(x,y)}^{L_j} =((32-w)R_{(0,i)}^{L_{j-1}} +wR_{(0,i+1)}^{L_{j-1}} +16)>>5
@@ -84,7 +84,7 @@ H.26X 的帧内无损编码方案中，预测过程的准确度直接决定了�
     \label{fig:L-IPOverview}
 \end{figure}
 
-L-IP 算法使待预测点与参考点的距离缩短到了 1 单位，使预测精度大幅上升。同时带来的一个优化是预测过程中不可用的需要填充的参考点（图 \ref{fig:L-IPOverview}(a) 中红色点）更加精确，距离可用点仅 1 单位，而在 H.26X 的块结构预测框架中，一个 N$\times$N 大小的预测单元需要填充的不可用参考点可能距离可用点远达 N 单位。另外，观察图 \ref{fig:Projection1_32Precision} 与图 \ref{fig:L-IPOverview}(b) 可发现在相邻的 2 个角度预测模式间切换时，待预测点（黄色圆点）对应的参考点（灰色圆点）的权重分配会根据 $\Delta d$ 产生变化，当待预测点远离参考点时，相邻 2 个角度模式的切换将产生较大的 $\Delta d{'}$ 致使权重分配变得十分粗犷，不利于在纹理丰富的区域生成变化精细的预测值。在 L-IP 算法方案中，这个缺陷由于待预测点与参考点的距离缩短到 1 单位而不再存在。
+L-IP 算法使待预测点与参考点的距离缩短到了 1 单位，使预测精度大幅上升。同时带来的一个优化是预测过程中不可用的需要填充的参考点（图 \ref{fig:L-IPOverview}(a) 中红色点）更加精确，距离可用点仅 1 单位，而在 H.26X 的块结构预测框架中，一个 NxN 大小的预测单元需要填充的不可用参考点可能距离可用点远达 N 单位。另外，观察图 \ref{fig:Projection1_32Precision} 与图 \ref{fig:L-IPOverview}(b) 可发现在相邻的 2 个角度预测模式间切换时，待预测点（黄色圆点）对应的参考点（灰色圆点）的权重分配会根据 $\Delta d$ 产生变化，当待预测点远离参考点时，相邻 2 个角度模式的切换将产生较大的 $\Delta d{'}$ 致使权重分配变得十分粗犷，不利于在纹理丰富的区域生成变化精细的预测值。在 L-IP 算法方案中，这个缺陷由于待预测点与参考点的距离缩短到 1 单位而不再存在。
 
 L-IP 算法中有 2 个细节需要说明：
 1) 尽管我们可以严格地按照式 \ref{equ:L-IP} 从 L1 迭代预测到右下角的最后一个像素点，但我们在测试过程中发现，L-IP 算法需要对预测单元内的每一个 L 区域记录一个预测模式信息，在 L 形区域足够小的情况下，提高极少量待预测点的预测准确度带来的收益甚至无法抵消记录额外模式信息的开销。经过大量的实验统计，我们将 4$\times$4 大小的待预测块规定为最小块，以图 \ref{fig:L-IPOverview} 为例，L1\textasciitilde L4 应用 L-IP 算法，右下角的 4$\times$4 块则应用 H.26X 的基于块结构的预测；
@@ -100,18 +100,18 @@ L-IP 提出的初衷是提高远距离待预测点的预测准确度，为了验
     \label{tab:L-IPResidualReduction}
     \begin{tabular}{@{}clcccccc@{}}
         \toprule
-        \multirow{2}{*}{序列类别}                & \multicolumn{1}{c}{\multirow{2}{*}{序列}} & \multicolumn{2}{c}{4$\times$4 PU} & \multicolumn{2}{c}{8$\times$8 PU} & \multicolumn{2}{c}{16$\times$16 PU}                             \\ \cmidrule(l){3-8}
-                                                 & \multicolumn{1}{c}{}                      & H.265                             & L-IP                              & H.265                               & L-IP   & H.265   & L-IP   \\ \midrule
-        \multirow{2}{*}{ClassB}                  & BasketballDrive                           & 30.01                             & 26.54                             & 130.94                              & 116.08 & 536.56  & 401.07 \\
-                                                 & Kimono                                    & 27.39                             & 20.58                             & 100.63                              & 86.52  & 371.53  & 291.05 \\
-        ClassC                                   & PartyScene                                & 109.97                            & 98.62                             & 463.98                              & 316.04 & 1067.07 & 860.59 \\
-        ClassE                                   & Johnny                                    & 27.85                             & 17.23                             & 82.54                               & 60.19  & 230.74  & 164.25 \\
-        ClassF                                   & SlideEditing                              & 163.6                             & 135.32                            & 337.67                              & 248.71 & 1464.68 & 560.35 \\ \midrule
-        \multicolumn{2}{l}{残差平均幅值降低比率} & \multicolumn{2}{c}{20.43\%}               & \multicolumn{2}{c}{22.14\%}       & \multicolumn{2}{c}{31.36\%}                                                                         \\ \bottomrule
+        \multirow{2}{*}{序列类别}                & \multicolumn{1}{c}{\multirow{2}{*}{序列}} & \multicolumn{2}{c}{4$\times$4 PU}  & \multicolumn{2}{c}{8$\times$8 PU}  & \multicolumn{2}{c}{16$\times$16 PU}                             \\ \cmidrule(l){3-8}
+                                                 & \multicolumn{1}{c}{}                      & H.265                       & L-IP                        & H.265                        & L-IP   & H.265   & L-IP   \\ \midrule
+        \multirow{2}{*}{ClassB}                  & BasketballDrive                           & 30.01                       & 26.54                       & 130.94                       & 116.08 & 536.56  & 401.07 \\
+                                                 & Kimono                                    & 27.39                       & 20.58                       & 100.63                       & 86.52  & 371.53  & 291.05 \\
+        ClassC                                   & PartyScene                                & 109.97                      & 98.62                       & 463.98                       & 316.04 & 1067.07 & 860.59 \\
+        ClassE                                   & Johnny                                    & 27.85                       & 17.23                       & 82.54                        & 60.19  & 230.74  & 164.25 \\
+        ClassF                                   & SlideEditing                              & 163.6                       & 135.32                      & 337.67                       & 248.71 & 1464.68 & 560.35 \\ \midrule
+        \multicolumn{2}{l}{残差平均幅值降低比率} & \multicolumn{2}{c}{20.43\%}               & \multicolumn{2}{c}{22.14\%} & \multicolumn{2}{c}{31.36\%}                                                            \\ \bottomrule
     \end{tabular}
 \end{table}
 
-H.26X 传统的基于块结构的预测中，每个预测单元仅使用 1 种预测模式，这使得图像中纹理丰富的区域必定被划分为多而小的预测单元。L-IP 算法下，大尺寸预测单元的每个 L 形区域均有一个独立的预测模式，因此应用 L-IP 后将使得 PU 划分结果中出现更多的大尺寸 PU。这一结论亦被实验数据验证，如表 \ref{tab:L-IPPUSize} 所示。表中数据的含义是：一帧中有 x\% 的像素点是在 N$\times$N 大小的预测单元中进行预测得到的。根据统计结果，16$\times$16 与 32$\times$32 的大尺寸预测单元分别增加了 18.67\% 和 33.04\%，4$\times$4 与 8$\times$8 的小尺寸预测单元则分别减少了 47.42\% 和 4.29\%。
+H.26X 传统的基于块结构的预测使得图像中纹理丰富的区域必定被划分为多而小的预测单元。L-IP 算法下，大尺寸预测单元的每个 L 形区域均有一个独立的预测模式，因此应用 L-IP 后将使得 PU 划分结果中出现更多的大尺寸 PU。这一结论亦被实验数据验证，如表 \ref{tab:L-IPPUSize} 所示。表中数据的含义是：一帧中有 x\% 的像素点是在 NxN 大小的预测单元中进行预测得到的。根据统计结果，16$\times$16 与 32$\times$32
 \begin{table}[hbt]
     \centering
     \caption{H.265 与 L-IP 各尺寸 PU 占比统计}
@@ -119,10 +119,10 @@ H.26X 传统的基于块结构的预测中，每个预测单元仅使用 1 种�
     \begin{tabular}{@{}lcccccccc@{}}
         \toprule
         \multicolumn{1}{c}{\multirow{2}{*}{序列}} &
-        \multicolumn{2}{c}{4$\times$4 PU/\%}      &
-        \multicolumn{2}{c}{8$\times$8 PU/\%}      &
-        \multicolumn{2}{c}{16$\times$16 PU/\%}    &
-        \multicolumn{2}{c}{32$\times$32 PU/\%}                                                                    \\ \cmidrule(l){2-9}
+        \multicolumn{2}{c}{4$\times$4 PU/\%}             &
+        \multicolumn{2}{c}{8$\times$8 PU/\%}             &
+        \multicolumn{2}{c}{16$\times$16 PU/\%}           &
+        \multicolumn{2}{c}{32$\times$32 PU/\%}                                                                           \\ \cmidrule(l){2-9}
         \multicolumn{1}{c}{}                      & L-IP  & H.265 & L-IP  & H.265 & L-IP  & H.265 & L-IP  & H.265 \\ \midrule
         PeopleOnStreet                            & 19.27 & 90.24 & 5.58  & 8.24  & 28.21 & 1.45  & 46.94 & 0.07  \\
         Traffic                                   & 14.93 & 87.80 & 4.22  & 11.46 & 29.50 & 0.70  & 51.35 & 0.05  \\
@@ -135,49 +135,6 @@ H.26X 传统的基于块结构的预测中，每个预测单元仅使用 1 种�
         \multicolumn{2}{c}{33.04}                                                                                 \\ \bottomrule
     \end{tabular}
 \end{table}
-
-最后，应用 L-IP 算法进行实际编码测试，与 H.265 标准参考软件 HM-16.21\upcite{HEVCsoftwareHM16} 编码结果对比，统计出编码效率提升的幅度。测试的对象为 JCT-VC 推荐的标准测试序列，包括 5 类自然图像：ClassA(2560$\times$1600), ClassB(1080p), ClassC(WVGA), ClassD(WQVGA), ClassE(720p) 和 1 类屏幕图像：ClassF。测试严格按照 H.265 通用测试环境 (Common Test Condition, CTC)\upcite{HEVCCommonTestConditionsCTC}进行配置，由于所提 L-IP 算法是为帧内无损编码设计的，因此仅在全帧内 (All Intra, AI) 的无损配置下进行测试。统计结果如表 \ref{tab:L-IPSummary} 所示。
-\begin{table}[htbp]
-    \centering
-    \caption{L-IP 算法性能测试}
-    \label{tab:L-IPSummary}
-    \begin{tabular}{@{}clccc@{}}
-        \toprule
-        序列类别                               & \multicolumn{1}{c}{序列}     & 分辨率           & 码率     & 编码时间 \\ \midrule
-        \multirow{2}{*}{ClassA}                & PeopleOnStreet               & 2560$\times$1600 & -11.29\% & 125.98\% \\
-                                               & Traffic                      & 2560$\times$1600 & -11.46\% & 124.76\% \\
-        \multirow{5}{*}{ClassB}                & BasketballDrive              & 1920$\times$1080 & -4.20\%  & 126.57\% \\
-                                               & BQTerrace                    & 1920$\times$1080 & -8.57\%  & 125.85\% \\
-                                               & Cactus                       & 1920$\times$1080 & -3.74\%  & 126.96\% \\
-                                               & Kimono                       & 1920$\times$1080 & -7.71\%  & 127.41\% \\
-                                               & ParkScene                    & 832$\times$480   & -6.58\%  & 127.37\% \\
-        \multirow{4}{*}{ClassC}                & BasketballDrill              & 832$\times$480   & -5.51\%  & 126.32\% \\
-                                               & BQMall                       & 832$\times$480   & -6.17\%  & 126.48\% \\
-                                               & PartyScene                   & 832$\times$480   & -5.58\%  & 125.11\% \\
-                                               & RaceHorsesC                  & 832$\times$480   & -8.10\%  & 124.38\% \\
-        \multirow{4}{*}{ClassD}                & BasketballPass               & 416$\times$240   & -12.36\% & 124.54\% \\
-                                               & BlowingBubbles               & 416$\times$240   & -5.47\%  & 125.01\% \\
-                                               & BQSquare                     & 416$\times$240   & -5.27\%  & 124.80\% \\
-                                               & RaceHorses                   & 416$\times$240   & -8.51\%  & 125.34\% \\
-        \multirow{3}{*}{ClassE}                & FourPeople                   & 1280$\times$720  & -12.51\% & 124.64\% \\
-                                               & Johnny                       & 1280$\times$720  & -10.97\% & 124.51\% \\
-                                               & KristenAndSara               & 1280$\times$720  & -11.86\% & 123.96\% \\
-        \multirow{4}{*}{ClassF}                & BasketballDrillText          & 832$\times$480   & -6.07\%  & 124.67\% \\
-                                               & ChinaSpeed                   & 1024$\times$768  & -17.15\% & 121.53\% \\
-                                               & SlideEditing                 & 1280$\times$720  & -13.57\% & 123.07\% \\
-                                               & SlideShow                    & 1280$\times$720  & -22.26\% & 126.19\% \\ \midrule
-        \multicolumn{2}{l}{ClassA$\sim$E 均值} & -                            & -8.10\%          & 125.56\%            \\ \midrule
-        \multicolumn{2}{l}{ClassF 均值}        & -                            & -14.76\%         & 123.87\%            \\ \midrule
-        \multicolumn{2}{l}{ClassA$\sim$F 均值} & -                            & -9.31\%          & 125.25\%            \\ \midrule
-        \multicolumn{2}{l}{解码时间}           & \multicolumn{3}{c}{103.21\%}                                          \\ \bottomrule
-    \end{tabular}
-\end{table}
-
-使用码率降低的百分比来衡量算法性能，表中负值表示使用 L-IP 算法编码得到的结果码率对比 H.265 标准降低。使用编码时间衡量算法复杂度，表中的编码时间、解码时间百分比数值由下式计算得到：
-\begin{equation}
-    \Delta T=\frac{T_{proposed}}{T_{anchor}}\times 100\%
-\end{equation}
-$T_{proposed}$ 表示所提算法的编码或解码所用时间，$T_{anchor}$ 表示 HM 参考软件编码或解码用时。ClassA\textasciitilde E 中，序列 FourPeople 得到了最大的 12.51\% 的编码效率提升，均值为 8.10\%；ClassF 中，序列 SlideShow 获得了最大的 22.26\% 的编码效率提升，均值为 14.76\%。算法复杂度方面，L-IP 使编码时间增加了 25\%，解码时间基本不变。
 
 
 \section{帧内无损编码的分块过程优化}
