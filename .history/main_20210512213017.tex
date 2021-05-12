@@ -1,0 +1,83 @@
+% !Mode:: "TeX:UTF-8"
+\documentclass[type=master, openany, pifootnote]{shuthesis}
+% 选项:
+%  type=[master|doctor],            % 必选
+%  secret,                          % 可选 (如果论文需要保密, 这一项需要打开)
+%  pifootnote,                      % 可选 (建议打开)
+%  openany|openright,               % 可选 (章首页是右开还是任意开, 默认是右开)
+%  nocolor                          % 提交最终版本时请打开此选项
+\usepackage{shuthesis}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\linespread{1.2}
+
+\begin{document}
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
+
+\frontmatter
+\shusetup{
+    %%%%%%%% 1. 配置里面不要出现空行. 2. 不需要的配置信息可以删除. %%%%%%%%%%%
+    secretlevel={公开},             % 秘级
+    ctitle={H.265 无损帧内编码算法优化及硬件实现},
+    etitle={Algorithm Optimization and Hardware Implementation of H.265 Lossless Intra Frame Coding},
+    cdisciplines={工学},
+    edisciplines={Engineering},
+    catalognumber={TN919.81},
+    cdate={2021 年 5 月},
+    edate={May, 2021},
+    coverdate={\zhdigits{2021}年\zhnumber{5}月},
+    cdepartment={通信与信息工程学院},
+    edepartment={School of Communication and Information Engineering},
+    cmajor={信号与信息处理},
+    emajor={Signal and information processing},
+    % 盲审隐藏
+    id={18721542},
+    cauthor={林庆毫},
+    eauthor={Qinghao Lin},
+    csupervisor={林敏},
+    esupervisor={Min Lin},
+    % id={xxxxxxxx},
+    % cauthor={xxxxxx},
+    % eauthor={xxxxxx},
+    % csupervisor={xxxxxx},
+    % esupervisor={xxxxxx},
+}
+
+\input{data/abstract}
+\makefirstpage                         % 生成带有学校 logo 的封面  有编译问题 全部完成后取消注释 手动跳过编译问题 （Linux xelatex 可过）
+\makecover
+
+\tableofcontents                       % 目录
+% \input{data/denotation}              % 符号对照表
+
+% 正文部分
+\mainmatter
+\include{data/chap01}
+\include{data/chap02}
+\include{data/chap03}
+\include{data/chap04}
+\include{data/chap05}
+% \include{data/chap06}
+\listoffigures                        % 插图索引
+\listoftables                         % 表格索引
+% 参考文献
+\bibliographystyle{shuthesis}
+\bibliography{reference/大论文写作}
+
+% 注意盲审隐藏、修改
+\include{data/publications}           % 发表论文清单
+\include{data/acknowledgement}        % 致谢
+
+\backmatter
+% \begin{appendix}
+%     \input{data/appendix}
+% \end{appendix}
+
+\end{document}
+
+
+% 手动处理内容备忘
+% 盲审记得隐藏发表论文清单
+% 盲审还要记得把致谢处理了
+% 打开 makefirstpage

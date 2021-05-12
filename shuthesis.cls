@@ -521,13 +521,13 @@
  for the \\ Degree of \shu@edegree~in \shu@edisciplines\par
  \vskip3cm
  \begin{center}\zihao{1}{\bfseries{\shu@etitle}}\end{center}
- \vskip4cm
+ \vskip3.7cm
  \begin{tabular}{rl}
  Candidate:  & \shu@eauthor\\
  Supervisor: & \shu@esupervisor\\
  Major:      & \shu@emajor\\
  \end{tabular}
- \vskip4cm
+ \vskip3.7cm
  \bfseries\shu@edepartment\\
  Shanghai University\\
  \shu@edate
