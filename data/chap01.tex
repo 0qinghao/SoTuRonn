@@ -7,6 +7,7 @@
 \upcite{H266Overview,H265Overview,H264Overview}
 
 \section{国内外研究现状}
+H.26X 系列编码标准可以通过简单地跳过变换、量化、去块滤波、自适应样点补偿等可能引入失真的步骤，实现无损帧内编码\upcite{BypassImprovingSCC}。但也因此使得待编码系数具有较高的能量，为后续的熵编码带来极大的压力。为优化H.26X系列标准无损帧内编码的性能，国内外学者进行了大量的研究。
 Kamisli\upcite{LosslessI2ITransformTCSVT} 提出了一种不会引入失真的整数离散正弦变换，一定程度上弥补了帧内无损编码时跳过变换带来的码率损失；
 Zhang 等\upcite{CrossComponentPredictionCCLM}分析了亮度通道与色差通道之间的关系，设计了3个模型，使用亮度通道对色差通道进行帧内预测；
 残差差分脉冲编码调制 (Residual Differential Pulse Code Modulation, RDPCM) 是 H.265 屏幕图像编码扩展标准 (HEVC Screen Content Coding Extension, HEVC-SCC)\upcite{HEVCSCCOverview} 的一部分，通过对残差进行再处理的方式提高了编码效率；
