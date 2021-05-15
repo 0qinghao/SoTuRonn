@@ -1,0 +1,21 @@
+% 中英文摘要和关键字
+\begin{cabstract}
+    H.265 视频编码标准自 2013 年发布以来，凭借其高压缩率、低失真度的优秀表现，被广泛应用在各类产业中。但在高精度需求的场景中，不产生失真的无损编码仍扮演着重要角色，例如指纹图像、航天器遥感图像存储以及疫情影响下的医学图像传输、远程桌面等。    
+    本课题通过对 H.265 无损帧内编码的深入研究，归纳出其在帧内预测和编码块划分流程中存在的缺陷，针对性地提出优化算法。课题进行的工作简述如下：
+
+    软件算法方面。1) 针对帧内预测在远离参考点的区域预测准确度低的缺陷，提出 L 形迭代预测算法，使所有待预测点与参考点的距离缩短到 1 单位，大幅提高帧内预测准确度；2) 针对四叉树结构下的编码块划分无法适应小片区域复杂纹理的缺陷，提出 L 形分块算法，使编码块划分更加灵活，同时与 L 形迭代预测有机融合，提出联合算法，进一步提高编码效率；3) 针对帧内预测残差仍具有特殊空间冗余的缺陷，提出残差中值边缘检测算法，对残差进行二次预测，有效降低其空间冗余，提高编码效率。
+
+    硬件实现方面。1) 在开源 H.265 硬件编码器的基础上实现上述改进算法，通过仿真收集测试数据，对比软硬件优化效果；2) 利用 FPGA 搭建硬件编码系统原型验证平台，通过该平台可对提出的各类改进算法进行硬件级测试验证。
+
+    基于联合专家组制定的通用测试环境和标准测试序列对本课题所提算法进行测试。实验结果表明，与 H.265 标准测试模型相比，上述 3 个算法分别得到了 9.31\%, 2.34\%, 7.04\% 的码率优化，联合算法得到了 10.21\% 的码率优化，证明所提算法性能良好。在 FPGA 验证中，得到了与软件测试相当的优化效果，证明所提算法硬件实现可行，有较高的应用价值。
+\end{cabstract}
+
+\ckeywords{无损视频编码, H.265, 帧内预测, 编码块划分, 硬件实现}
+
+\begin{eabstract}
+    Since the release of H.265 video coding standard in 2013, with its excellent performance of hihg coding efficiency and low distortion, it has been widely used in many industries. However, the lossless video coding still plays an important role in some high-precision fields, such as fingerprint image storage, satellite remote sensing image storage and the medical image transmission and remote desktop under the impact of COVID-19, since it is distortion-free. Through the in-depth study of H.265 lossless intra frame coding, this paper summarizes the defects in intra prediction and coding unit partitioning, and proposes the optimization algorithms. The specific work is as follows:
+
+
+\end{eabstract}
+
+\ekeywords{\TeX, \LaTeX, Template, Thesis}
