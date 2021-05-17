@@ -14,14 +14,6 @@
 
 图中的外部 CPU 并非系统框架内的模块，系统框架预留了与外部控制器的交互接口，用于进行诸如感兴趣区域 (Range of Interest, ROI)、码率控制、时延控制等外部控制操作。像素缓存模块用于存储编码过程中的原始图像、重建图像、环路后处理后的图像以及参考帧图像，同时处理核心编码模块的寻址信息。帧内预测分为 2 个阶段完成，目的是提高系统吞吐率减少流水线停滞，具体将在 \ref{cha:keymodule} 节进行说明。去方块滤波、SAO 以及重建模块耦合性较强，放置在一个顶层模块中处理。
 
-H.265 硬件编码器的最顶层模块及接口如图 \ref{fig:IPTop} 所示，包含全局时钟/复位、系统控制接口、码流输出接口、外部存储器访问接口以及图中未列出的 debug 接口。
-\begin{figure}[hbt]
-    \centering
-    \includegraphics{IPTop.pdf}
-    \caption{H.265 编码器顶层接口}
-    \label{fig:IPTop}
-\end{figure}
-
 \section{关键模块的硬件实现}
 \label{cha:keymodule}
 

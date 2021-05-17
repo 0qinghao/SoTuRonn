@@ -14,18 +14,8 @@
 
 图中的外部 CPU 并非系统框架内的模块，系统框架预留了与外部控制器的交互接口，用于进行诸如感兴趣区域 (Range of Interest, ROI)、码率控制、时延控制等外部控制操作。像素缓存模块用于存储编码过程中的原始图像、重建图像、环路后处理后的图像以及参考帧图像，同时处理核心编码模块的寻址信息。帧内预测分为 2 个阶段完成，目的是提高系统吞吐率减少流水线停滞，具体将在 \ref{cha:keymodule} 节进行说明。去方块滤波、SAO 以及重建模块耦合性较强，放置在一个顶层模块中处理。
 
-H.265 硬件编码器的最顶层模块及接口如图 \ref{fig:IPTop} 所示，包含全局时钟/复位、系统控制接口、码流输出接口、外部存储器访问接口以及图中未列出的 debug 接口。
-\begin{figure}[hbt]
-    \centering
-    \includegraphics{IPTop.pdf}
-    \caption{H.265 编码器顶层接口}
-    \label{fig:IPTop}
-\end{figure}
-
 \section{关键模块的硬件实现}
 \label{cha:keymodule}
-
-% \subsection{}
 根据前文所述，H.265 标准下在进行帧内预测时，需要对一个 PU 内的 35 种预测模式进行扫描，从而判断哪种模式是最优的。然而在硬件实现中出现一个问题：在进行预测之前，需要获取其经过重建的参考像素，而参考像素大概率位于前一个 PU 之中，因此，为了等待重建需要让整个预测处理在时序中长时间停留，导致系统吞吐率和硬件的利用率降低\upcite{FuDanIntraArchitecture}，如图 \ref{fig:Intra12}(a) 所示。这一情况在处理大尺寸预测单元时尤为明显。
 \begin{figure}[hbt]
     \centering
@@ -40,7 +30,6 @@ H.265 硬件编码器的最顶层模块及接口如图 \ref{fig:IPTop} 所示，
     \caption{帧内预测模块顶层视图}
     \label{fig:Intra12Top}
 \end{figure}
-% \subsection{系统状态机}
 
 \section{行为级仿真与测试}
 对所设计编码器进行行为级仿真，以验证其正确性。系统验证方案如图 \ref{fig:behavesim} 所示。

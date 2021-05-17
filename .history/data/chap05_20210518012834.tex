@@ -12,24 +12,13 @@
     \label{fig:FPGADemoBlock}
 \end{figure}
 
-\section{FPGA 验证平台关键模块}
-验证平台由上位机与 FPGA 共同组成，上位机进行视频源的获取与预处理，同时负责对 FPGA 输出的码流进行加工、软解码，最终实时播放；FPGA 负责映射硬件编码器，其中使用大量的专用存储器资源实现数据缓存和交换，以保证留出足够的查找表实现编码逻辑的映射。通信端口由上位机和 FPGA 共同处理，根据通信速率的需求可选择串口、以太网口甚至 PCI-E 接口进行通信。
-\subsection{FPGA 器件}
-FPGA 原型验证平台所使用的器件是基于 XILINX Zynq UltraScale+ MPSoCs 开发平台的开发板 AXU15EG。主芯片为 XCZU15EG-2FFVB1156I，外挂 2GB DDR4。底板扩展了外围接口，本课题所设计的部分包括 USB3.0 接口、千兆以太网接口、UART 接口、FMC 接口、RS485 接口以及 MIPI 接口。所用器件的完整结构如图 \ref{fig:FPGAIntroduce} 所示。
-\begin{figure}[hbt]
-    \centering
-    \includegraphics{FPGAIntroduce.pdf}
-    \caption{FPGA 器件完整结构}
-    \label{fig:FPGAIntroduce}
-\end{figure}
+\section{验证平台关键模块}
+验证平台由上位机与 FPGA 共同组成，上位机进行视频源的获取与预处理，同时负责对 FPGA 输出的码流进行加工、软解码，最终实时播放；FPGA 负责映射硬件编码器，其中使用大量的专用存储器资源实现数据缓存和交换，以保证留出足够的查找表实现编码逻辑的映射。通信端口由上位机和 FPGA 共同处理，根据通信速率的需求可选择串口、以太网口进行通信。
+\subsection{FPGA 平台}
+\% 简要介绍 FPGA 开发板的可用资源，说明 LUT RAM DSP 等足够映射编码器 \%
 
 \subsection{视频源及预处理}
-原型验证平台的待编码视频源可有多种形式，灵活适用于不同场景。
-\begin{enumerate}
-    \item 视频文件
-    
-    使用上位机中存储的视频文件作为视频源。其方便提供、数据内容固定的特性使该方式多用于严谨的编码器性能统计、分析。另外，由于不存在与其余硬件的交互，可将开发过程中的不确定性控制在最小，因此也多用于 FPGA 的仿真验证阶段。
-\end{enumerate}
+\% 视频源可用文件、相机、HDMI \%
 
 % 文件 摄像头 显卡HDMI输出
 \subsection{与上位机通信接口}
