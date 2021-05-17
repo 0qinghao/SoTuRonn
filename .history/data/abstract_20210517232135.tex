@@ -5,7 +5,7 @@
 
     1) 针对帧内预测在远离参考点的区域预测准确度低的缺陷，提出 L 形迭代预测算法，使所有待预测点与参考点的距离缩短到 1 单位，大幅提高帧内预测准确度；2) 针对四叉树结构下的编码块划分无法适应小片区域复杂纹理的缺陷，提出 L 形分块算法，使编码块划分更加灵活，同时与 L 形迭代预测有机融合，提出联合算法，进一步提高编码效率；3) 针对帧内预测残差仍具有特殊空间冗余的缺陷，提出残差中值边缘检测算法，对残差进行二次预测，有效降低其空间冗余，提高编码效率。
 
-    除了上述算法创新，课题还开展了硬件实现与验证方面的工作。1) 在 H.265 硬件编码器上实现上述改进算法，通过仿真收集测试数据，对比软硬件优化效果；2) 利用 FPGA 搭建硬件编码系统原型验证平台，通过该平台可对提出的各类改进算法进行硬件级测试验证。
+    硬件实现方面。1) 在开源 H.265 硬件编码器的基础上实现上述改进算法，通过仿真收集测试数据，对比软硬件优化效果；2) 利用 FPGA 搭建硬件编码系统原型验证平台，通过该平台可对提出的各类改进算法进行硬件级测试验证。
 
     基于联合专家组制定的通用测试环境和标准测试序列对本课题所提算法进行测试。实验结果表明，与 H.265 标准测试模型相比，上述 3 个算法分别得到了 9.31\%, 2.34\%, 7.04\% 的码率优化，联合算法得到了 10.21\% 的码率优化，证明所提算法性能良好。在 FPGA 验证中，得到了与软件测试相当的优化效果，证明所提算法硬件实现可行，有较高的应用价值。
 \end{cabstract}
@@ -17,7 +17,7 @@
 
     1) Aiming at the low accuracy of intra prediction in the region far away from the reference samples, an L-shape-based Iterative Prediction algorithm is proposed, which shortens the distance between predicted samples and reference samples to 1 unit, thereby greatly improves the accuracy of intra prediction; 2) In view of the defect that the coding unit partitioning under quadtree structure can not adapt to the rich texture of small area, this paper proposes an L-shape-based partitioning algorithm, which makes the coding unit partition more flexible. At the same time, it can integrate with L-shape-based Iterative Prediction and become a joint algorithm to futuer improve the coding efficiency; 3) In view of the special spatial redundancy of intra prediction residuals, Residuals Median Edge Detect algorithm is proposed to predict the residuals again, which can effectively reduce the special spatial redundancy and improve the coding efficiency.
 
-    In addition to the above algorithm innovations, we also carried out the work of hardware implementation and verification. 1) The improved algorithm is implemented on the basis of H.265 hardware encoder, and the test data is collected through behavioural simulations to compare the gain of software and hardware; 2) FPGA is used to build the prototype verification platform of hardware video coding system, through which proposed optimization algorithms can be verified and tested at the hardware level.
+    About the hardware implementation. 1) The improved algorithm is implemented on the basis of open source H.265 hardware encoder, and the test data is collected through behavioural simulations to compare the gain of software and hardware; 2) FPGA is used to build the prototype verification platform of hardware video coding system, through which proposed optimization algorithms can be verified and tested at the hardware level.
 
     Proposed algorithms are tested using the standard test sequences under common test condition specified by joint expert group. Experimental results show that, compared with H.265 test model, the above three algorithms get 9.31\%, 2.34\% and 7.04\% bit-rate saving respectively, and the joint algorithm gets 10.21\% bit-rate saving, which proves that the proposed algorithms are significantly optimized. In FPGA verification, the optimization effect is equivalent to that of software testing, which proves that the hardware implementation of the proposed algorithms are feasible and worthy of application.
 
