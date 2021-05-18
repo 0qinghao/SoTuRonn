@@ -69,7 +69,9 @@ FPGA 原型验证平台所使用的器件是基于 XILINX Zynq UltraScale+ MPSoC
 
 \subsection{编码模块}
 编码模块与第\ref{cha:c4}章相比，在数字逻辑上并未产生区别。
-但考虑到视频编码器将消耗大量的数字逻辑资源，为了让 FPGA 有限的查找表资源被高效地利用，对编码器中大部分的存储器做强制手动替换处理，即显式地用 Xilinx RAM IP 替换能够用存储器逻辑实现的模块。根据存储空间的大小，使用 3 类不同的 RAM IP 进行替换，对于极小存储器使用分布式 RAM 实现，以不至于过多浪费专用 RAM；对于超过 4 kbits 的存储器使用 Block RAM 实现，Block RAM 是 FPGA 核心中的专用存储器资源，最小的例化单位是 18 kbits；对于极大存储器使用 Ultra RAM 实现，与 Block RAM 类似，但单块 URAM 即为 128 kbits。经过上述处理后编码模块以使用大量专用存储单元的代价，换来减少 20\% 以上查找表资源消耗的效果。
+但考虑到视频编码器将消耗大量的数字逻辑资源，为了让 FPGA 有限的查找表资源被高效地利用，对编码器中大部分的存储器做强制手动替换处理，即显式地用 Xilinx RAM IP 替换能够用存储器逻辑实现的模块。
+% ultra ram DSP blockram distributionram FIFO
+% \% 使用 Ultra RAM 与 Block RAM 实现编码器中的大量存储需求 \%
 
 \subsection{上位机解码模块}
 % VCL NAL

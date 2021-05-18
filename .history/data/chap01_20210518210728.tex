@@ -23,7 +23,7 @@ Zhou 等\upcite{SAP-SAPE,SAP-SAP1,SAP-SAPHVSWP2DTM,SAP-SAPHV,SAP-SAP}将 DPCM �
 Sanchez 等\upcite{pwmResidualsPiecewiseMapping}通过分析残差块中数据的分布特征，提出了将待编码数据的“重心”进行搬移的新颖方案，其针对不同的分布特征设计了 3 组映射规则，整体降低了残差的能量；
 元辉等\upcite{XiDianIntraPredictionH264}提出若在编码时发现当前预测单元各预测模式的结果高度相似，则不必编码模式，而是将所有预测模式的均值作为预测结果，一定程度上减少了需要编码的模式信息；
 Li 等\upcite{EfficientMultiplelinebasedIntra}发现使用最靠近预测单元的单行单列样点作为参考点的方式有时无法得到最佳预测结果，反而部分远距离参考点更有利于进行预测，因而提出通过将参考点拓展到多行的方式提高帧内预测的准确性。
-除此之外，还有将深度学习\upcite{LearnedFastHEVC}、神经网络\upcite{FullyConnectedNetworkbased}、遗传算法\upcite{GeneticAlgorithmFloatValueCompress}与图像编解码相结合进行的研究，与本课题及传统的编解码研究出入过大，按下不表。
+除此之外，还有将神经网络\upcite{FullyConnectedNetworkbased}、遗传算法\upcite{GeneticAlgorithmFloatValueCompress}与图像编解码相结合进行的研究，与本课题及传统的研究出入过大，按下不表。
 
 上述研究中提出的算法对帧内编码的性能均有不同程度的优化，但仍存在以下待改进的问题：
 \cite{LosslessI2ITransformTCSVT} 设计的整数变换方法局限性很大，且没有量化的配合很难降低待编码系数的能量，因此带来的码率优化较小；

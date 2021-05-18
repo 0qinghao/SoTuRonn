@@ -11,7 +11,7 @@ H.264/AVC(Advanced Video Coding)、H.265/HEVC(High Efficiency Video Coding)、H.
 同时，在某些高精度需求的场景中无损编码仍是不可或缺的存在，例如来之不易的卫星遥感图像的编码、涉及安全保障的指纹图像存储、全球疫情影响下的医学影像传输、远程桌面共享等。
 因而探索无损帧内编码的优化算法有很高的研究和应用价值。
 
-本课题的另一项重点研究内容是 H.265 编码器及优化算法的硬件实现。实时视频编码在监控、直播等场景中应用广泛，实时编码一般有 2 类实现方案：1) 利用数字信号处理器 (Digital Signal Processor, DSP) 实现；2) 使用专用视频编码硬件实现，例如各类手机处理器中集成的视频编解码单元。由于 H.265 实时编码对硬件的性能和功耗需求都极高\upcite{LineCodeSaveMemoryEnergyEfficient}，使用 DSP 实现难度极大，实现后编码能力低。专用视频编码器经优化后可得到良好的性能与功耗的折衷，因此研究专用 H.265 编码器的硬件实现有很高的应用价值。
+本课题的另一项重点研究内容是 H.265 编码器及优化算法的硬件实现。实时视频编码在监控、直播等场景中应用广泛，实时编码一般有 2 类实现方案：1) 利用数字信号处理器 (Digital Signal Processor, DSP) 实现；2) 使用专用视频编码硬件实现，例如各类手机处理器中集成的视频编解码单元。由于 H.265 实时编码对硬件的性能和功耗需求都极高，使用 DSP 实现难度极大，实现后编码能力低。专用视频编码器经优化后可得到良好的性能与功耗的折衷，因此研究专用 H.265 编码器的硬件实现有很高的应用价值。
 
 \section{国内外研究现状}
 H.26X 系列编码标准可以通过简单地跳过变换、量化、去块滤波、自适应样点补偿等可能引入失真的步骤，实现无损帧内编码\upcite{BypassImprovingSCC}。但也因此使得待编码系数具有较高的能量，为后续的熵编码带来极大的压力。为优化H.26X系列标准无损帧内编码的性能，国内外学者进行了大量的研究。
@@ -23,12 +23,11 @@ Zhou 等\upcite{SAP-SAPE,SAP-SAP1,SAP-SAPHVSWP2DTM,SAP-SAPHV,SAP-SAP}将 DPCM �
 Sanchez 等\upcite{pwmResidualsPiecewiseMapping}通过分析残差块中数据的分布特征，提出了将待编码数据的“重心”进行搬移的新颖方案，其针对不同的分布特征设计了 3 组映射规则，整体降低了残差的能量；
 元辉等\upcite{XiDianIntraPredictionH264}提出若在编码时发现当前预测单元各预测模式的结果高度相似，则不必编码模式，而是将所有预测模式的均值作为预测结果，一定程度上减少了需要编码的模式信息；
 Li 等\upcite{EfficientMultiplelinebasedIntra}发现使用最靠近预测单元的单行单列样点作为参考点的方式有时无法得到最佳预测结果，反而部分远距离参考点更有利于进行预测，因而提出通过将参考点拓展到多行的方式提高帧内预测的准确性。
-除此之外，还有将深度学习\upcite{LearnedFastHEVC}、神经网络\upcite{FullyConnectedNetworkbased}、遗传算法\upcite{GeneticAlgorithmFloatValueCompress}与图像编解码相结合进行的研究，与本课题及传统的编解码研究出入过大，按下不表。
 
 上述研究中提出的算法对帧内编码的性能均有不同程度的优化，但仍存在以下待改进的问题：
 \cite{LosslessI2ITransformTCSVT} 设计的整数变换方法局限性很大，且没有量化的配合很难降低待编码系数的能量，因此带来的码率优化较小；
 \cite{pwmResidualsPiecewiseMapping,HEVCSCCOverview} 设计的残差分段映射方案没有考虑残差独特的空间相关性，仍有优化空间；
-\cite{CrossComponentPredictionCCLM,SAP-SAPE,SAP-SAP1,SAP-SAPHVSWP2DTM,SAP-SAPHV,SAP-SAP,XiDianIntraPredictionH264,EfficientMultiplelinebasedIntra} 均是设法增加或优化预测模式来提高帧内预测的准确性，然而各代 H.26X 标准中的帧内预测模式不断增多，在最新的 H.266 中已经达到 67 种\upcite{VVCComplexityAnalysisEncodeTime30xDecodeTime3x}，很难再挖掘出优化空间，可以预见今后这类改进带来的优化会越来越小；
+\cite{CrossComponentPredictionCCLM,SAP-SAPE,SAP-SAP1,SAP-SAPHVSWP2DTM,SAP-SAPHV,SAP-SAP,XiDianIntraPredictionH264,EfficientMultiplelinebasedIntra} 均是设法增加或优化预测模式来提高帧内预测的准确性，然而各代 H.26X 标准中的帧内预测模式不断增多，在最新的 H.266 中已经达到 67 种，很难再挖掘出优化空间，可以预见今后这类改进带来的优化会越来越小；
 最后，上述大部分方案具有一定的应用范围的局限性，很难在各世代的 H.26X 标准中通用。
 
 \section{本课题的主要工作}

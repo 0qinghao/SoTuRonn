@@ -10,7 +10,7 @@
 3) 由联合专家组维护的各标准参考模型随着版本迭代可能存在不同的命名，例如 H.266 的参考模型在早期曾称为 JEM(Joint Exploration Model)，本文中统一使用以下命名：用于 H.264 的 JM(Joint Test Model) 模型\upcite{AVCsoftwareJM}、用于 H.265 的 HM(HEVC Test Model) 模型\upcite{HEVCsoftwareHM16}以及用于 H.266 的 VTM(VVC Test Model) 模型\upcite{VVCsoftwareVTM}。
 
 \section{视频编码技术发展历史}
-应用广泛的 H.265 与确定最终标准不久的 H.266 视频编码标准，是数字视频编码技术 40 年的学术研究和 30 年的标准化的成果，代表着各时期最先进的视频编码技术\upcite{ComprehensiveReviewTraditional}。
+应用广泛的 H.265 与确定最终标准不久的 H.266 视频编码标准，是数字视频编码技术 40 年的学术研究和 30 年的标准化的成果，代表着各时期最先进的视频编码技术。
 在视频编码技术发展的早期（H.264 制定以前），国际上存在 2 套应用广泛的标准，分别是国际电信联盟-电信标准化部门 (International Telecommunication Union-Telecommunication Standardization Sector, ITU-T) 制定的 H.26X 系列，与国际标准化组织 (International Organization for Standardization, ISO) / 国际电工委员会 (International Electrotechnical Commission, IEC) 制定的 MPEG 系列。
 前者广泛应用于网络视频通信，后者主要应用于视频存储和广播流媒体。
 H.264 以后的编码标准则是由 ITU-T 派出的视频编码专家组 (Video Coding Experts Group, VCEG) 和 ISO/IEC 派出的动态图像专家组 (Moving Pictures Experts Group, MPEG) 共同征集提案制定的。
@@ -184,7 +184,7 @@ SAO 是 H.265 开始引入的环路后处理技术。H.26X 标准中为了得到
 在预先定义了补偿的正负性后，编码器仅须记录绝对补偿值，解码器便可通过同样的分类策略判断补偿的正负性并进行补偿。因此 SAO 在保证了仅传输极少量数据的情况下对图像视频质量做出了有效的优化。
 
 \section{熵编码技术}
-熵编码是 H.26X 编码标准的最后一步，其将各类待编码的数据转换为具有特定语法语义的二进制比特流（见图 \ref{fig:BlockDiagram}）。因其依据信息熵理论进行优化而称熵编码，熵编码可进一步利用待编码数据的统计特性消除冗余，是提高视频编码效率的重要工具\upcite{NovelVideoCoding}。
+熵编码是 H.26X 编码标准的最后一步，其将各类待编码的数据转换为具有特定语法语义的二进制比特流（见图 \ref{fig:BlockDiagram}）。因其依据信息熵理论进行优化而称熵编码，熵编码可进一步利用待编码数据的统计特性消除冗余，是提高视频编码效率的重要工具。
 
 \subsection{变长编码在视频编码中的应用}
 对不同的输入符号使用不同长度的码字进行编码称为变长编码。为了得到更高的编码效率，需要将短码字分配给出现频率高的符号，反之将长码字分配给几乎不出现的符号以使平均码字长度最短。
