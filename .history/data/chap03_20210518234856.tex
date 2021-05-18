@@ -455,33 +455,31 @@ R-MED 算法提出的初衷是充分利用待编码系数的特殊空域相关�
 与 H.265 参考软件 HM-16.21 相比，经过 R-MED 算法处理的视频序列达到了最大 18.45\%，平均 7.04\% 的码率优化，平均编码时间仅增加 4\%，同时由于经过处理的待编码残差能量大幅减少，缓解了后续熵编解码器的压力，因此平均解码速度加快 5\%，另外还证明比 HEVC-SCC 扩展标准中的 RDPCM 性能更好。与 H.266 参考软件 VTM-12.3 相比，视频码率达到了最大 17.36\%，平均 5.98\% 的优化，编码时间平均增加 17\%，解码速度提升 17\%，同时证明比 H.266 标准中的 BDPCM 性能更好。R-MED 在 H.265 和 H.266 中的应用证明了该算法具有很强的通用性，也可与各种帧内预测优化算法结合使用，甚至有可能在编码结构相似的数字音视频编码技术标准 (Audio Video Standard, AVS) 或 AOMedia Video 1(AV1) 标准中应用。
 
 此外，为了证明 R-MED 算法性能良好，在表 \ref{tab:R-MEDOthers} 中给出了近年多种针对 H.265 无损帧内编码的优化算法与 R-MED 算法的性能比较。表中数据指对比 H.265 跳过变换量化方案的优化程度。由于大部分文献并未给出完整的测试序列的实验数据，因此仅能对比下表中所示的 5 个测试序列的性能：
-\begin{table}[hbt]
+\begin{table}[htb]
     \centering
     \caption{R-MED 与其他算法的性能比较（对比 H.265）}
     \label{tab:R-MEDOthers}
     \begin{tabular}{@{}clcccccc@{}}
         \toprule
-        \multirow{2}{*}{类别}                       &
-        \multicolumn{1}{c}{\multirow{2}{*}{序列}}   &
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}SAP-\\ HV/\%\end{tabular}} &
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}SAP\\ /\%\end{tabular}} &
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}SAP1\\ /\%\end{tabular}} &
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}SAP+SWP2\\ +DTM/\%\end{tabular}} &
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}RDPCM\\ +pwm/\%\end{tabular}} &
-        \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}R-MED\\ /\%\end{tabular}}                                                                             \\
-                                                    & \multicolumn{1}{c}{} &       &        &        &        &        &        \\ \midrule
-        B                                           & Kimono               & -2.32 & -4.42  & -4.47  & -5.84  & -5.07  & -6.82  \\
-        B                                           & ParkScene            & -3.38 & -4.95  & -4.97  & -6.12  & -5.31  & -5.85  \\
-        F                                           & BasketballDrillText  & -1.38 & -5.77  & -5.93  & -6.19  & -3.33  & -3.01  \\
-        F                                           & SlideEditing         & -8.03 & -9.5   & -9.76  & -11.15 & -8.2   & -7.33  \\
-        F                                           & SlideShow            & -9.59 & -12.69 & -12.74 & -14.07 & -13.04 & -18.45 \\ \midrule
-        \multicolumn{2}{l}{平均码率优化}            & -4.94                & -7.47 & -7.57  & -8.67  & -6.99  & -8.29           \\ \midrule
-        \multicolumn{2}{l}{编码时间}                & 97                   & 97    & 97     & 273    & 104    & 104             \\ \midrule
-        \multicolumn{2}{l}{解码时间}                & 99                   & 99    & 98     & 196    & 103    & 95              \\ \bottomrule
+        \multirow{2}{*}{类别}                     &
+        \multicolumn{1}{c}{\multirow{2}{*}{序列}} &
+        \multirow{2}{*}{SAP-HV/\%}                &
+        \multirow{2}{*}{SAP/\%}                   &
+        \multirow{2}{*}{SAP1/\%}                  &
+        \multirow{2}{*}{SAP+SWP2+DTM/\%}          &
+        \multirow{2}{*}{RDPCM+pwm/\%}             &
+        \multirow{2}{*}{R-MED/\%}                                                                                             \\
+                                                  & \multicolumn{1}{c}{} &       &        &        &        &        &        \\ \midrule
+        B                                         & Kimono               & -2.32 & -4.42  & -4.47  & -5.84  & -5.07  & -6.82  \\
+        B                                         & ParkScene            & -3.38 & -4.95  & -4.97  & -6.12  & -5.31  & -5.85  \\
+        F                                         & BasketballDrill & -1.38 & -5.77  & -5.93  & -6.19  & -3.33  & -3.01  \\
+        F                                         & SlideEditing         & -8.03 & -9.5   & -9.76  & -11.15 & -8.2   & -7.33  \\
+        F                                         & SlideShow            & -9.59 & -12.69 & -12.74 & -14.07 & -13.04 & -18.45 \\ \midrule
+        \multicolumn{2}{l}{平均码率优化}          & -4.94                & -7.47 & -7.57  & -8.67  & -6.99  & -8.29           \\ \midrule
+        \multicolumn{2}{l}{编码时间}              & 97                   & 97    & 97     & 273    & 104    & 104             \\ \midrule
+        \multicolumn{2}{l}{解码时间}              & 99                   & 99    & 98     & 196    & 103    & 95              \\ \bottomrule
     \end{tabular}
 \end{table}
-
-上述算法中，SAP+SWP2+DTM\upcite{SAP-SAPHVSWP2DTM} 方案获得了最佳的码率优化，但编解码时间大幅增加。相比之下R-MED 以增加少量编码时间的代价获得了可观的码率优化，证明所提算法具有较高的实用价值。
 
 值得一提的是，本课题还尝试将 R-MED 算法应用在有损压缩上，测试结果显示其在编码高分辨率图像（ClassA）和屏幕图像（ClassF）的结果中得到了 2\%\textasciitilde 3\% 的码率优化。尽管有损编码时的待编码系数不再具有传统的空间相关性，但 R-MED 仍有一定的降低数据能量的作用，这涉及到将来课题的研究内容，在此不再具体展开。
 
