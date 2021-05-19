@@ -87,18 +87,18 @@ FPGA 原型验证通过的标志之一是在上位机成功解码出收到的硬
 % 照片
 FPGA 原型验证平台在 XCZU15EG-2FFVB1156I 上映射占用的资源如表 \ref{tab:FPGAResource} 所示。
 \begin{table}[hbt]
-    \centering
-    \caption{编码器 FPGA 映射资源使用情况}
-    \label{tab:FPGAResource}
-    \begin{tabular}{@{}lll@{}}
-        \toprule
-        资源   & 数量   & 使用率  \\ \midrule
-        LUT    & 250660 & 73.45\% \\
-        FF     & 9200   & 1.35\%  \\
-        BRAMs  & 99     & 13.27\% \\
-        DSP    & 463    & 13.11\% \\
-        LUTRAM & 11680  & 3.42\%  \\ \bottomrule
-    \end{tabular}
+\centering
+\caption{编码器 FPGA 映射资源使用情况}
+\label{tab:FPGAResource}
+\begin{tabular}{@{}lll@{}}
+\toprule
+资源     & 数量     & 使用率     \\ \midrule
+LUT    & 250660 & 73.45\% \\
+FF     & 9200   & 1.35\%  \\
+BRAMs  & 99     & 13.27\% \\
+DSP    & 463    & 13.11\% \\
+LUTRAM & 11680  & 3.42\%  \\ \bottomrule
+\end{tabular}
 \end{table}
 
 FPGA 原型验证平台实物如图 \ref{fig:FPGAphoto} 所示，图中包含摄像机、FPGA 开发板和主机显示器，其中摄像头与 FPGA 开发板上的 USB2UART 均通过 USB2.0 连接到显示器所对应的主机上。显示器中显示实时编、解码后的摄像头采集画面。
